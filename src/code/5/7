@@ -1,0 +1,8 @@
+± find .git/refs -type -f
+.git/refs/heads/my_other_branch
+.git/refs/heads/my_new_branch
+.git/refs/heads/master
+± find .git/refs -type -f -exec cat {} \;
+3a8b37dc0f79859b5b58f5cb0a859d4ddd0f99a0
+8cbc33461c800c20acea3b055886f8bed21c2092
+8cbc33461c800c20acea3b055886f8bed21c2092

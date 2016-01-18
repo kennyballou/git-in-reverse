@@ -1,0 +1,5 @@
+± find .git/objects -type f
+.git/objects/b9/8c9a9f9501ddcfcbe02a9de52964ed7dd76d5a
+.git/objects/fc/f0be4d7e45f0ef9592682ad68e42270b0366b4
+.git/objects/57/16ca5987cbf97d6bb54920bea6adde242d87e6
+.git/objects/25/7cc5642cb1a054f08cc83f2d943e56fd3ebe99

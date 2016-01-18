@@ -1,0 +1,4 @@
+± find .git/refs -type f -exec cat {} \;
+8cbc33461c800c20acea3b055886f8bed21c2092
+8cbc33461c800c20acea3b055886f8bed21c2092
+8cbc33461c800c20acea3b055886f8bed21c2092

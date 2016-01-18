@@ -1,0 +1,703 @@
+\documentclass{beamer}
+\usetheme{Berlin}
+\usecolortheme[light,accent=blue]{solarized}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\setmainfont{DejaVuSans}
+\usepackage{booktabs}
+\usepackage{lmodern}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{trees, shapes.misc, arrows}
+\usepackage{pgfkeys}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\setbeamertemplate{headline}{}
+
+\lstset{%
+    basicstyle=\footnotesize\ttfamily,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    frame=signle,
+    keepspaces=true,
+    columns=flexible,
+    language=Java,
+    numbers=left,
+    numbersep=5pt,
+    numberstyle=\tiny\color{solarizedBase00},
+    showspaces=false,
+    showstringspaces=false,
+    stepnumber=1,
+    showtabs=false,
+    stringstyle=\color{solarizedMagenta},
+    keywordstyle=\color{solarizedCyan},
+    commentstyle=\color{solarizedGreen},
+    tabsize=2
+}
+
+\title{Learning Git± in Reverse}
+\subtitle{A Backwards Introduction to the ``information manager from hell''
+[e83c51633]}
+\author[Ballou]{Kenny Ballou}
+\institute[zData]{%
+    \inst{}%
+    zData, Inc.
+}
+
+\AtBeginSection[]{%
+    \begin{frame}
+    \tableofcontents[
+        currentsection,
+        sectionstyle=show/shaded,
+        subsectionstyle=show/show/hide]
+    \end{frame}
+}
+
+\begin{document}
+% TikZ Styles
+\tikzstyle{every node}=[%
+    fill=solarizedBase02,
+    draw=solarizedBase01,
+    thick,
+    rounded corners,
+    anchor=north,
+    sibling distance=6cm]
+\tikzstyle{edge from parent}=[%
+    solarizedBase00,
+    -o,
+    thick,
+    draw]
+
+%\tikzstyle{edge from parent path}=[%
+%    \tikzparentnode.east |- \tikzchildnode.south]
+
+\begin{frame}[label=titleslide]
+\titlepage{}
+\end{frame}
+
+\begin{frame}
+\tableofcontents[subsectionstyle=hide]
+\end{frame}
+
+\begin{frame}
+\frametitle{Who am I?}
+\begin{itemize}
+\item{Hacker}
+\item{Developer (read gardener)}
+\item{Mathematician}
+\item{Student}
+\end{itemize}
+
+\end{frame}
+
+\section{Introduction}
+
+\begin{frame}
+\begin{figure}
+\includegraphics[scale=0.45]{xkcd_git.png}
+\caption{XKCD on Git\cite{website:xkcd_git_comic}}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Git±}
+\framesubtitle{What is Git?}
+\begin{itemize}
+\item<2->{Distributed Versioning Control system (D-VCS)}
+\item<3->{``A way to manage code''}
+\item<4->{``My preferred VCS tool''}
+\item<5->{The ``information manager from hell''}
+\item<6->{A distributed DAG}
+\item<7->{An object store}
+\item<8->{An content addressable filesystem}
+\item<9->{A key-value store}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Git±}
+What does Git store?
+\begin{itemize}
+\item<2->{Objects}
+\item<3->{``Packs''}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Git Definitions}
+\begin{itemize}
+\item{Objects}
+\item{Trees}
+\item{Commits}
+\end{itemize}
+\end{frame}
+
+\section{Plumbing}
+\subsection{Blobs}
+\begin{frame}
+\frametitle{Git Objects}
+\begin{itemize}
+\item{ZLIB compressed blob}
+\item{Dumb containers, storing provided content}
+\item{Created using the \texttt{git-hash-object} plumbing command}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Git Objects}
+\begin{figure}
+\begin{tikzpicture}
+    \node[text=solarizedBlue] at (0,  0) {257cc5642}
+        child{node[text=solarizedGreen] {foo}};
+    \node[text=solarizedBlue] at (3,  0) {5716ca598}
+        child{node[text=solarizedGreen] {bar}};
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\texttt{git-init}}
+\lstinputlisting[language=bash,numbers=none]{code/1/1}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Results of \texttt{git-init}}
+\lstinputlisting[language=bash,numbers=none]{code/1/2}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\texttt{git-hash-object}}
+\lstinputlisting[language=bash,numbers=none]{code/1/3}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\texttt{git-hash-object}}
+\lstinputlisting[language=bash,numbers=none]{code/1/4}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\texttt{git-cat-file}}
+\lstinputlisting[language=bash,numbers=none]{code/1/5}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Raw Access to Git Objects}
+\lstinputlisting[language=bash,numbers=none]{code/1/6}
+\end{frame}
+
+\begin{frame}
+\frametitle{Git Object Limitations}
+\begin{itemize}
+\item{Remembering 40 character SHA's is hard}
+\item{What about file names? Where did that go?}
+\item{Big files?}
+\end{itemize}
+\end{frame}
+
+\subsection{Trees}
+
+\begin{frame}
+\frametitle{Git Trees}
+\begin{itemize}
+\item{ZLIB compressed blobs}
+\item{Contain references to files and other trees}
+\item{Created using the \texttt{git-update-index} and \texttt{git-write-tree}}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Git Trees}
+\begin{figure}
+\begin{tikzpicture}[sibling distance=3cm]
+    \node[text=solarizedMagenta]{./}
+        child{node[text=solarizedBlue] {blob}
+            child {node[text=solarizedGreen] {foo}}}
+        child{node[text=solarizedBlue] {blob}
+            child {node[text=solarizedGreen] {bar}}};
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\texttt{git-update-index} and \texttt{git-write-tree}}
+\lstinputlisting[language=bash,numbers=none]{code/2/1}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Current Git Objects}
+\lstinputlisting[language=bash,numbers=none]{code/2/2}
+\end{frame}
+
+\begin{frame}
+\frametitle{Current Git Objects}
+\begin{figure}
+\begin{tikzpicture}[sibling distance=3cm]
+    \node[text=solarizedMagenta] at (0, 0) {fcf0be4d7}
+        child{node[text=solarizedBlue] {257cc5642}
+            child{node[text=solarizedGreen]{foo}}};
+    \node[text=solarizedBlue] at (3, -1) {5716ca598} child [missing] {};
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Adding \texttt{bar.txt}}
+\lstinputlisting[language=bash,numbers=none]{code/2/3}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Git Objects}
+\lstinputlisting[language=bash,numbers=none]{code/2/4}
+\end{frame}
+
+\begin{frame}
+\frametitle{Git Objects, Updated}
+\begin{figure}
+\begin{tikzpicture}[sibling distance=3cm]
+    \node[text=solarizedMagenta] at (0, 0) {b98c9a9f}
+        child{node[text=solarizedBlue] {257cc5642}
+            child{node[text=solarizedGreen]{foo}}}
+        child{node[text=solarizedBlue] {5716ca598}
+            child{node[text=solarizedGreen] {bar}}};
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Modifying Files}
+\lstinputlisting[language=bash,numbers=none]{code/2/5}
+\end{frame}
+
+\begin{frame}
+\frametitle{Git Objects, Updated}
+\begin{figure}
+\begin{tikzpicture}[sibling distance=3cm]
+    \node[text=solarizedMagenta] at (0, 0) {68b75754}
+        child{node[text=solarizedBlue] {a3f555b64}
+            child{node[text=solarizedGreen]{foo 2}}}
+        child{node[text=solarizedBlue] {5716ca598}
+            child{node[text=solarizedGreen] {bar}}};
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Modifying Files}
+\framesubtitle{Current Objects}
+\lstinputlisting[language=bash,numbers=none]{code/2/6}
+\end{frame}
+
+\begin{frame}
+\frametitle{Modifying Files}
+\framesubtitle{Current Objects}
+\begin{figure}
+\begin{tikzpicture}[sibling distance=3cm]
+    \node[text=solarizedMagenta] at (0, 0) {68b75754}
+        child{node[text=solarizedBlue] {a3f555b64}
+            child{node[text=solarizedGreen]{foo 2}}}
+        child{node[text=solarizedBlue] {5716ca598}
+            child{node[text=solarizedGreen] {bar}}};
+    \node[text=solarizedMagenta] at (5, 0) {b98c9a9f}
+        child{node[text=solarizedBlue] {257cc5642}
+            child{node[text=solarizedGreen]{foo}}}
+        child{node[text=solarizedBlue] {5716ca598}
+            child{node[text=solarizedGreen] {bar}}};
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Modifying Files}
+\framesubtitle{Current Objects}
+\begin{figure}
+\begin{tikzpicture}[sibling distance=3cm]
+    \node at (0, 0) {Current Tree}
+        child{node[text=solarizedMagenta] {68b75754}
+            child{node[text=solarizedBlue] {a3f555b64}
+                child{node[text=solarizedGreen]{foo 2}}}
+            child{node[text=solarizedBlue] {5716ca598}
+                child{node[text=solarizedGreen] {bar}}}};
+    \node at (5, 0) {Old Tree}
+        child{node[text=solarizedMagenta] {b98c9a9f}
+        child{node[text=solarizedBlue] {257cc5642}
+            child{node[text=solarizedGreen]{foo}}}
+        child{node[text=solarizedBlue] {5716ca598}
+            child{node[text=solarizedGreen] {bar}}}};
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Current Objects}
+\framesubtitle{The Beginnings of a DAG}
+\begin{figure}
+\begin{tikzpicture}[sibling distance=3cm]
+    \node at (0, 0) {Current Tree}
+        child{node[text=solarizedMagenta] {68b75754}
+            child{node[text=solarizedBlue] {a3f555b64}
+                child{node[text=solarizedGreen]{foo 2}}}
+            child{node[text=solarizedBlue,dashed] {5716ca598}
+                child{node[text=solarizedGreen,dashed] {bar}}}};
+    \node at (5, 0) {Old Tree}
+        child{node[text=solarizedMagenta] {b98c9a9f}
+        child{node[text=solarizedBlue] {5716ca598}
+            child{node[text=solarizedGreen] {bar}}}
+        child{node[text=solarizedBlue] {257cc5642}
+            child{node[text=solarizedGreen]{foo}}}};
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Limitation of Git± Trees}
+\begin{itemize}
+\item{Remembering SHA's is \textit{still} hard}
+\item{No metadata about the who, when, and why}
+\end{itemize}
+\end{frame}
+
+\subsection{Commits}
+
+\begin{frame}
+\frametitle{Git± Commit Objects}
+\begin{itemize}
+\item{ZLIB compressed blob}
+\item{Stores metadata about changes}
+\item{Stores a reference to the tree being saved}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\texttt{git-commit-tree}}
+\lstinputlisting[language=bash,numbers=none]{code/3/1}
+\end{frame}
+
+\begin{frame}
+\frametitle{\texttt{git-commit-tree}}
+\begin{figure}
+\begin{tikzpicture}
+    \node[text=solarizedCyan] {a619a045a}
+        child{node[text=solarizedMagenta] {fcf0be4d7}
+            child{node[text=solarizedBlue] {257cc5642}
+                child{node[text=solarizedGreen]{foo}}}};
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\texttt{git-commit-tree}}
+\lstinputlisting[language=bash,numbers=none]{code/3/2}
+\end{frame}
+
+\begin{frame}
+\frametitle{\texttt{git-commit-tree}}
+\begin{figure}
+\begin{tikzpicture}[sibling distance=3cm]
+    \node[text=solarizedCyan] {2de9adf2b}
+        child{node[text=solarizedCyan] {a619a045a}}
+        child{node[text=solarizedMagenta] {b98c9a9f9}
+            child{node[text=solarizedBlue] {5716ca598}
+                child{node[text=solarizedGreen] {bar}}}
+            child{node[text=solarizedBlue] {257cc5642}
+                child{node[text=solarizedGreen]{foo}}}};
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\texttt{git-commit-tree}}
+\lstinputlisting[language=bash,numbers=none]{code/3/3}
+\end{frame}
+
+\begin{frame}
+\frametitle{\texttt{git-commit-tree}}
+\begin{figure}
+\begin{tikzpicture}[sibling distance=3cm]
+    \node[text=solarizedCyan] {e0ea04248}
+        child{node[text=solarizedCyan] {2de9adf2b}}
+        child{node[text=solarizedMagenta] {68b757546}
+            child{node[text=solarizedBlue] {5716ca598}
+                child{node[text=solarizedGreen] {bar}}}
+            child{node[text=solarizedBlue] {a3f555b64}
+                child{node[text=solarizedGreen]{foo 2}}}};
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Git± History}
+\lstinputlisting[language=bash,numbers=none]{code/3/4}
+\end{frame}
+
+\begin{frame}
+\frametitle{Git± Thus Far}
+\begin{figure}
+\begin{tikzpicture}
+    \node[text=solarizedBlue] (foo) at (10, -10) {foo};
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Git± Thus Far}
+\begin{figure}
+\begin{tikzpicture}
+    \node[text=solarizedBlue] (foo) at (10, -10) {foo};
+    \node[text=solarizedBlue] (hfoo) at (10, -8) {257cc564};
+    \draw[-o] (hfoo) -- (foo);
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Git± Thus Far}
+\begin{figure}
+\begin{tikzpicture}
+    \node[text=solarizedBlue] (foo) at (10, -10) {foo};
+    \node[text=solarizedBlue] (hfoo) at (10, -8) {257cc564};
+    \node[text=solarizedMagenta] (tree1) at (9, -6) {fcf0be4d};
+    \draw[-o] (hfoo) -- (foo);
+    \draw[-o] (tree1) -- (hfoo);
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Git± Thus Far}
+\begin{figure}
+\begin{tikzpicture}
+    \node[text=solarizedBlue] (foo) at (10, -10) {foo};
+    \node[text=solarizedBlue] (hfoo) at (10, -8) {257cc564};
+    \node[text=solarizedMagenta] (tree1) at (9, -6) {fcf0be4d};
+    \node[text=solarizedCyan] (commit1) at (5, -6) {a619a045a};
+    \draw[-o] (hfoo) -- (foo);
+    \draw[-o] (tree1) -- (hfoo);
+    \draw[-o] (commit1) -- (tree1);
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Git± Thus Far}
+\begin{figure}
+\begin{tikzpicture}
+    \node[dashed,text=solarizedBlue] (foo) at (10, -10) {foo};
+    \node[text=solarizedBlue] (bar) at (8,  -10) {bar};
+    \node[dashed,text=solarizedBlue] (hfoo) at (10, -8) {257cc564};
+    \node[text=solarizedBlue] (hbar) at (8,  -8) {5716ca59};
+    \node[text=solarizedMagenta] (tree1) at (9, -6) {fcf0be4d};
+    \node[text=solarizedCyan] (commit1) at (5, -6) {a619a045a5};
+    \draw[-o] (hfoo) -- (foo);
+    \draw[-o] (hbar) -- (bar);
+    \draw[-o] (tree1) -- (hfoo);
+    \draw[-o] (commit1) -- (tree1);
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Git± Thus Far}
+\begin{figure}
+\begin{tikzpicture}
+    \node[dashed,text=solarizedBlue] (foo) at (10, -10) {foo};
+    \node[text=solarizedBlue] (bar) at (8,  -10) {bar};
+    \node[dashed,text=solarizedBlue] (hfoo) at (10, -8) {257cc564};
+    \node[text=solarizedBlue] (hbar) at (8,  -8) {5716ca59};
+    \node[text=solarizedMagenta] (tree2) at (9, -6) {b98c9a9f9};
+    \node[text=solarizedCyan] (commit2) at (5, -6) {2de9adf2b};
+    \node[text=solarizedCyan] (commit1) at (5, -8) {a619a045a5};
+    \draw[-o] (hfoo) -- (foo);
+    \draw[-o] (hbar) -- (bar);
+    \draw[-o] (tree2) -- (hfoo);
+    \draw[-o] (tree2) -- (hbar);
+    \draw[-o] (commit2) -- (tree2);
+    \draw[-o] (commit2) -- (commit1);
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Git± Thus Far}
+\begin{figure}
+\begin{tikzpicture}
+    \node[text=solarizedBlue] (foo) at (10, -10) {foo 2};
+    \node[dashed,text=solarizedBlue] (bar) at (8,  -10) {bar};
+    \node[text=solarizedBlue] (hfoo) at (10, -8) {a3f555b6};
+    \node[dashed,text=solarizedBlue] (hbar) at (8,  -8) {5716ca59};
+    \node[text=solarizedMagenta] (tree3) at (9, -6) {68b75754};
+    \node[text=solarizedCyan] (commit3) at (5, -6) {e0ea04248};
+    \node[text=solarizedCyan] (commit2) at (5, -8) {2de9adf2b};
+    \node[text=solarizedCyan] (commit1) at (5, -10) {a619a045a5};
+    \draw[-o] (hfoo) -- (foo);
+    \draw[-o] (hbar) -- (bar);
+    \draw[-o] (tree2) -- (hfoo);
+    \draw[-o] (tree2) -- (hbar);
+    \draw[-o] (commit3) -- (tree3);
+    \draw[-o] (commit3) -- (commit2);
+    \draw[-o] (commit2) -- (commit1);
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\section{Using Git±}
+\begin{frame}
+\frametitle{Using Git±}
+\framesubtitle{The porcelain over the pipes}
+\begin{itemize}
+\item{Plumbing commands are difficult, painful, and error prone}
+\item{Thankfully, we have friendly ``porcelain'' commands}
+\item{The basics can be covered with \texttt{git-add} and \texttt{git-commit}}
+\end{itemize}
+\end{frame}
+
+\subsection{git-add}
+\begin{frame}
+\frametitle{\texttt{git-add}}
+Combines:
+\begin{itemize}
+\item<1->{\texttt{git-hash-object}}
+\item<2->{\texttt{git-update-index}}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{\texttt{git-status}}
+\framesubtitle{Short aside about \texttt{git-status}}
+\begin{itemize}
+\item{The go-to command for peering into the current state of a repository}
+\item{Provides information about state of all files}
+\begin{itemize}
+\item{Currently untracked files}
+\item{Currently modified files}
+\item{Current state of ``staging'' area}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\texttt{git-add}}
+\lstinputlisting[language=bash,numbers=none]{code/4/1}
+\end{frame}
+
+\subsection{git-commit}
+\begin{frame}
+\frametitle{\texttt{git-commit}}
+\begin{itemize}
+\item{Creates ``commit'' out of current staging area}
+\begin{itemize}
+\item{Requires a short message}
+\item{Will implicitly figure out the parent commit}
+\item{Forwards the \texttt{HEAD} pointer and the current branch pointer}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\texttt{git-commit}}
+\lstinputlisting[language=bash,numbers=none]{code/4/2}
+\end{frame}
+
+\section{Advanced Git±}
+\subsection{References}
+\begin{frame}
+\frametitle{Git± Branches}
+\begin{itemize}
+\item<2->{Named reference to a commit hash}
+\item<3->{Defined in text files under \texttt{./.git/refs}}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Git± Branches}
+\lstinputlisting[language=bash,numbers=none]{code/5/1}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\texttt{git-branch}}
+Branches can be created with a simple invocation of \texttt{git-branch}:
+\lstinputlisting[language=bash,numbers=none]{code/5/2}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\texttt{git-checkout}}
+After the branch is created, we can switch into that branch with
+\texttt{git-checkout}:
+\lstinputlisting[language=bash,numbers=none]{code/5/3}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\texttt{git-checkout -b}}
+Or, we can do all in the same command:
+\lstinputlisting[language=bash,numbers=none]{code/5/4}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Git± Branches}
+Currently, all branches are pointing to the same commit:
+\lstinputlisting[language=bash,numbers=none]{code/5/5}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Git± Branches}
+\lstinputlisting[language=bash,numbers=none]{code/5/6}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Git± Branches}
+\lstinputlisting[language=bash,numbers=none]{code/5/7}
+\end{frame}
+
+\subsection{Synchronization}
+\begin{frame}[fragile]
+\frametitle{Working with remotes}
+\begin{itemize}
+\item{Clone a repository from, say, Github, will create the remote reference}
+\item{Otherwise, can be created with \texttt{git-remote}}
+\end{itemize}
+Example Usage:
+\lstinputlisting[language=bash,numbers=none]{code/5/8}
+\end{frame}
+
+\begin{frame}
+\frametitle{Working with remotes}
+\begin{itemize}
+\item{\texttt{git-clone}: Clone ``remote'' repository}
+\begin{itemize}
+\item{\texttt{SSH://}: Bi-directional}
+\item{\texttt{Git://}: Pull only, not authenticated}
+\item{\texttt{HTTP (S)://}: Bi-directional, authenticated, but stupid}
+\item{\texttt{File://}: Strange}
+\end{itemize}
+\item{\texttt{git-push}: Push local changes to remote repository}
+\item{\texttt{git-remote}: Utility command for working with remotes}
+\item{\texttt{git-pull}: Pull remote changes into working copy}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\texttt{git-pull} considered harmful}
+\begin{itemize}
+\item{Standard use of \texttt{git-pull} requires clean working directory}
+\item{Will force a merge, if drift between remote and local}
+\item{I personally prefer creating an alias for \texttt{git-remote}}
+\end{itemize}
+\lstinputlisting[
+    language=bash,
+    numbers=none,
+    title=\texttt{\~{}/.gitconfig}]{code/5/9}
+\end{frame}
+
+\section*{References}
+\begin{frame}[allowframebreaks]
+\frametitle{References}
+\nocite{*}
+\renewcommand{\refname}{}
+\bibliographystyle{plain}
+\bibliography{references}
+\end{frame}
+
+\againframe{titleslide}
+\end{document}

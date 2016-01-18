@@ -1,0 +1,11 @@
+± echo 'our third commit' | git commit-tree \
+    -p 2de9adf2b64be21358265a9fd61f70b87a200c20 \
+    68b757546e08c1d9033c8802e4de1c0d591d90c8
+e0ea04248e16ffffd8a5cd1ba61bdf28a6e23be9
+± git cat-file -p e0ea04248e16ffffd8a5cd1ba61bdf28a6e23be9
+tree 68b757546e08c1d9033c8802e4de1c0d591d90c8
+parent 2de9adf2b64be21358265a9fd61f70b87a200c20
+author kballou <kballou@devnulllabs.io> 1452898092 -0700
+committer kballou <kballou@devnulllabs.io> 1452898092 -0700
+
+our third commit

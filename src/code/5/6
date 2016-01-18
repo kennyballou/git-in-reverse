@@ -1,0 +1,8 @@
+± git branch
+my_other_branch
+± echo 'foo' > foo.txt
+± git add foo.txt
+± git commit -m 'add foo.txt'
+[my_other_branch 3a8b37d] add foo.txt
+ 1 file changed, 1 insertion(+)
+ create mode 100644 foo.txt

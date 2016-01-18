@@ -1,0 +1,4 @@
+± git branch my_new_branch
+± find .git/refs -type f
+.git/refs/heads/my_new_branch
+.git/refs/heads/master

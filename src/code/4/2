@@ -1,0 +1,7 @@
+± git commit -m "Initial commit"
+[master (root-commit) 8cbc334] Initial commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 bar.txt
+± git status
+On branch master
+nothing to commit, working directory clean

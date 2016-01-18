@@ -1,0 +1,16 @@
+± find .git
+.git
+.git/objects
+.git/objects/info
+.git/objects/pack
+.git/config
+.git/HEAD
+.git/hooks
+.git/hooks/post-checkout
+.git/hooks/post-commit
+.git/hooks/ctags
+.git/hooks/post-merge
+.git/hooks/post-rewrite
+.git/refs
+.git/refs/tags
+.git/refs/heads

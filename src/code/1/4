@@ -1,0 +1,7 @@
+± echo 'foo' | git hash-object -w --stdin
+257cc5642cb1a054f08cc83f2d943e56fd3ebe99
+± echo 'bar' | git hash-object -w --stdin
+5716ca5987cbf97d6bb54920bea6adde242d87e6
+± find .git/objects -type f
+.git/objects/57/16ca5987cbf97d6bb54920bea6adde242d87e6
+.git/objects/25/7cc5642cb1a054f08cc83f2d943e56fd3ebe99

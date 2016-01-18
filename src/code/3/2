@@ -1,0 +1,11 @@
+± echo 'our second commit' | git commit-tree \
+    -p a619a045a5220ad975ee244140ec8f2a92a5a5ca \
+    b98c9a9f9501ddcfcbe02a9de52964ed7dd76d5a
+2de9adf2b64be21358265a9fd61f70b87a200c20
+± git cat-file -p 2de9adf2b64be21358265a9fd61f70b87a200c20
+tree b98c9a9f9501ddcfcbe02a9de52964ed7dd76d5a
+parent a619a045a5220ad975ee244140ec8f2a92a5a5ca
+author kballou <kballou@devnulllabs.io> 1452898023 -0700
+committer kballou <kballou@devnulllabs.io> 1452898023 -0700
+
+our second commit

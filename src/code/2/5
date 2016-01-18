@@ -1,0 +1,10 @@
+± echo 'foo 2' > foo.txt
+± git hash-object -w foo.txt
+a3f555b643cbba18c0e69c82d8820c7487cebe15
+± git update-index
+± git update-index --add foo.txt
+± git write-tree
+68b757546e08c1d9033c8802e4de1c0d591d90c8
+± git cat-file -p 68b757546e08c1d9033c8802e4de1c0d591d90c8
+100644 blob 5716ca5987cbf97d6bb54920bea6adde242d87e6	bar.txt
+100644 blob a3f555b643cbba18c0e69c82d8820c7487cebe15	foo.txt

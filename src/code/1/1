@@ -1,0 +1,3 @@
+cd /tmp
+git init foo
+cd foo

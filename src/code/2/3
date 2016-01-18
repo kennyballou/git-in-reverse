@@ -1,0 +1,8 @@
+± git update-index
+± git update-index --add --cacheinfo 100644 \
+    5716ca5987cbf97d6bb54920bea6adde242d87e6 bar.txt
+± git write-tree
+b98c9a9f9501ddcfcbe02a9de52964ed7dd76d5a
+± git cat-file -p b98c9a9f9501ddcfcbe02a9de52964ed7dd76d5a
+100644 blob 5716ca5987cbf97d6bb54920bea6adde242d87e6	bar.txt
+100644 blob 257cc5642cb1a054f08cc83f2d943e56fd3ebe99	foo.txt
