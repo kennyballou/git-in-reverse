@@ -1,10 +1,11 @@
-all: build
-.PHONY: all
+.PHONY: all clean
 
-build: src/git-in-reverse.tex
-	@make -C src/ build
-	@cp src/git-in-reverse.pdf .
+all: git-in-reverse.pdf
+
+%.pdf: src/%.tex
+	@make -C src/ $@
+	@cp src/$@ .
 
 clean:
 	@make -C src/ clean
-	@rm -f git-in-reverse.pdf
+	@rm -f *.pdf
