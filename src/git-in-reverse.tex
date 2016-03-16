@@ -364,17 +364,16 @@ What does Git store?
 \begin{figure}
 \begin{tikzpicture}[sibling distance=3cm]
     \node at (0, 0) {Current Tree}
-        child{node[text=solarizedMagenta] {68b75754}
+        child{node[text=solarizedMagenta] (new_tree) {68b75754}
             child{node[text=solarizedBlue] {a3f555b64}
-                child{node[text=solarizedGreen]{foo 2}}}
-            child{node[text=solarizedBlue,dashed] {5716ca598}
-                child{node[text=solarizedGreen,dashed] {bar}}}};
-    \node at (5, 0) {Old Tree}
+                child{node[text=solarizedGreen]{foo 2}}}};
+    \node at (4, 0) {Old Tree}
         child{node[text=solarizedMagenta] {b98c9a9f}
-        child{node[text=solarizedBlue] {5716ca598}
+        child{node[text=solarizedBlue] (bar_hash) {5716ca598}
             child{node[text=solarizedGreen] {bar}}}
         child{node[text=solarizedBlue] {257cc5642}
             child{node[text=solarizedGreen]{foo}}}};
+    \draw[-o,thick] (new_tree) edge (bar_hash);
 \end{tikzpicture}
 \end{figure}
 \end{frame}
