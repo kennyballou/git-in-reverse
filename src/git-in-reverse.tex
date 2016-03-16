@@ -278,10 +278,14 @@ What does Git store?
 \begin{figure}
 \begin{tikzpicture}[sibling distance=3cm]
     \node[text=solarizedMagenta] at (0, 0) {b98c9a9f}
-        child{node[text=solarizedBlue] {257cc5642}
+        child{node[text=solarizedBlue] (foo_hash) {257cc5642}
             child{node[text=solarizedGreen]{foo}}}
         child{node[text=solarizedBlue] {5716ca598}
             child{node[text=solarizedGreen] {bar}}};
+    \node[text=solarizedMagenta] at (-3, 0) (previous_hash) {fcf0be4d7};
+    \node at (-3, 1.5) (previous) {Previous Tree};
+    \draw[-o,thick] (previous_hash) -- (foo_hash);
+    \draw[->,thick] (previous) -- (previous_hash);
 \end{tikzpicture}
 \end{figure}
 \end{frame}
@@ -298,8 +302,12 @@ What does Git store?
     \node[text=solarizedMagenta] at (0, 0) {68b75754}
         child{node[text=solarizedBlue] {a3f555b64}
             child{node[text=solarizedGreen]{foo 2}}}
-        child{node[text=solarizedBlue] {5716ca598}
+        child{node[text=solarizedBlue] (bar_hash) {5716ca598}
             child{node[text=solarizedGreen] {bar}}};
+    \node[text=solarizedMagenta] at (3, 0) (previous_hash) {b98c9a9f};
+    \node at (3, 1.5) (previous) {Previous Tree};
+    \draw[-o,thick] (previous_hash) -- (bar_hash);
+    \draw[->,thick] (previous) -- (previous_hash);
 \end{tikzpicture}
 \end{figure}
 \end{frame}
