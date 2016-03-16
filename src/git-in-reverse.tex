@@ -236,6 +236,16 @@ What does Git store?
 \lstinputlisting[language=bash,numbers=none]{code/2/1}
 \end{frame}
 
+\begin{frame}
+\frametitle{Git± Tree File Modes}
+\begin{description}
+\item[100644]{Regular file, *nix permissions 0644}
+\item[100755]{Regular file, *nix permissions 0755, e.g., executable}
+\item[120000]{Symbolic link}
+\item[160000]{?}
+\end{description}
+\end{frame}
+
 \begin{frame}[fragile]
 \frametitle{Current Git Objects}
 \lstinputlisting[language=bash,numbers=none]{code/2/2}
