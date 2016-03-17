@@ -1,0 +1,4 @@
+± git log --oneline | head -3
+19d1c94 Remove unmerged files on :Gstatus U
+9315ec6 Document StageUndo key map (U) in :Gstatus
+9025078 Call git clean for U on untracked file
