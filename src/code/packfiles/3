@@ -1,0 +1,10 @@
+± git gc
+Counting objects: 9, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (9/9), done.
+Total 9 (delta 0), reused 0 (delta 0)
+± find .git/objects -type f
+.git/objects/info/packs
+.git/objects/pack/pack-6b3ea4129144c819898dd16a08bc26c62d5ef8cc.idx
+.git/objects/pack/pack-6b3ea4129144c819898dd16a08bc26c62d5ef8cc.pack

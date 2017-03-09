@@ -43,10 +43,6 @@
 \subtitle{A Backwards Introduction to \\{} the ``information manager from
 hell'' [e83c51633]}
 \author[Ballou]{Kenny Ballou}
-\institute[zData]{%
-    \inst{}%
-    zData, Inc.
-}
 
 \AtBeginSection[]{%
     \begin{frame}
@@ -112,6 +108,9 @@ hell'' [e83c51633]}
 \item<4->{``My preferred VCS tool''}
 \item<5->{The ``information manager from hell''}
 \item<6->{A distributed DAG}
+\begin{itemize}
+\item<6->{``A Graph Tree''}
+\end{itemize}
 \item<7->{An object store}
 \item<8->{A content addressable filesystem}
 \item<9->{A key-value store}
@@ -122,8 +121,8 @@ hell'' [e83c51633]}
 \frametitle{Git±}
 What does Git store?
 \begin{itemize}
-\item<2->{Objects}
-\item<3->{``Packs''}
+\item<2-4>{Objects}
+\item<3-3>{``Packs''}
 \end{itemize}
 \end{frame}
 
@@ -243,7 +242,8 @@ What does Git store?
 \item[100644]{Regular file, *nix permissions 0644}
 \item[100755]{Regular file, *nix permissions 0755, e.g., executable}
 \item[120000]{Symbolic link}
-\item[160000]{?}
+\item[160000]{``Gitlink'', object from another repository, \texttt{fast-import}}
+\item[040000]{Subdirectory, \texttt{fast-import}}
 \end{description}
 \end{frame}
 
@@ -568,6 +568,52 @@ What does Git store?
     \draw[-o,thick] (commit2) -- (commit1);
 \end{tikzpicture}
 \end{figure}
+\end{frame}
+
+\subsection{Packfiles}
+
+\begin{frame}
+\frametitle{Packfiles}
+\begin{itemize}
+\item<2->{Tight Object Storage}
+\item<3->{``Packs'' Objects Together}
+\item<4->{Adds quick, indexed access to objects}
+\item<5->{Motivated for network and access efficiency}
+\begin{itemize}
+\item<5->{Not Disk Space Efficiency}
+\end{itemize}
+\item<6->{Created automatically}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Creating Packfiles}
+\begin{itemize}
+\item<1->{\texttt{git-pack-objects}}
+\item<2->{\texttt{git-gc}}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Creating Packfiles}
+\framesubtitle{\texttt{git-pack-objects}}
+\lstinputlisting[%
+    language=bash,
+    numbers=none,
+    basicstyle=\scriptsize{}\ttfamily{},
+    columns=fixed]{code/packfiles/1}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Creating Packfiles}
+\framesubtitle{\texttt{git-pack-objects}}
+\lstinputlisting[language=bash,numbers=none]{code/packfiles/2}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Creating Packfiles}
+\framesubtitle{\texttt{git-gc}}
+\lstinputlisting[language=bash,numbers=none]{code/packfiles/3}
 \end{frame}
 
 \section{Using Git±}

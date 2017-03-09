@@ -1,0 +1,16 @@
+± git rev-list --objects --all | head -1 | \
+  git pack-objects --stdout | xxd
+Counting objects: 1, done.
+Total 1 (delta 0), reused 0 (delta 0)
+00000000: 5041 434b 0000 0002 0000 0001 950e 789c  PACK..........x.
+00000010: 9d8c 510e c220 1005 ff39 c55e 40b3 0894  ..Q.. ...9.^@...
+00000020: 2531 c6ab 00bb 4d1b 6931 089e 5f8d 9ec0  %1....M.i1.._...
+00000030: bf37 93cc eb4d 0426 4ade 7967 2741 ca9a  .7...M.&J.yg'A..
+00000040: 031a 9389 f024 9645 6764 173e 3293 bac7  .....$.Egd.>2...
+00000050: 267b 8729 4844 09c6 2349 326f c83c 3b66  &{.)HD..#I2o.<;f
+00000060: 4a12 58cf 19a3 f17a 162d 2a8e bed4 06b7  J.X....z.-*.....
+00000070: 144b a903 cebf 7165 79ee a394 12d3 e3b8  .K....qey.......
+00000080: d60b 684b 4193 d116 e180 1e51 e5ba 6d6b  ..hKA......Q..mk
+00000090: eff2 4fab ea68 d097 b531 7c6f d40b 6bc6  ..O..h...1|o..k.
+000000a0: 4735 ffc0 30ce a4c0 140a a02e 648f 775c  G5..0.......d.w\
+000000b0: 1fd1 654d a59e                           ..eM..

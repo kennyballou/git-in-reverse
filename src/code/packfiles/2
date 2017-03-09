@@ -1,0 +1,7 @@
+± git rev-list --objects --all | head -1 | \
+  git pack-objects test
+Counting objects: 1, done.
+Total 1 (delta 0), reused 0 (delta 0)
+± ls test-*
+test-ffc030cea4c0140aa02e648f775c1fd1654da59e.idx
+test-ffc030cea4c0140aa02e648f775c1fd1654da59e.pack
