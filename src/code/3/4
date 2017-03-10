@@ -1,11 +1,11 @@
-± git log --stat --oneline e0ea04248
+± git log --stat --oneline 32a5f01a
 
-e0ea042 our third commit
+32a5f01a our third commit
  foo.txt | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
-2de9adf our second commit
+69ea0e9 our second commit
  bar.txt | 1 +
  1 file changed, 1 insertion(+)
-a619a04 our first commit
+0e7ce0c our first commit
  foo.txt | 1 +
  1 file changed, 1 insertion(+)

@@ -407,7 +407,7 @@ What does Git store?
 \frametitle{\texttt{git-commit-tree}}
 \begin{figure}
 \begin{tikzpicture}
-    \node[text=solarizedCyan] {a619a045a}
+    \node[text=solarizedCyan] {0e7ce0c}
         child{node[text=solarizedMagenta] {fcf0be4d7}
             child{node[text=solarizedBlue] {257cc5642}
                 child{node[text=solarizedGreen]{foo}}}};
@@ -424,8 +424,8 @@ What does Git store?
 \frametitle{\texttt{git-commit-tree}}
 \begin{figure}
 \begin{tikzpicture}[sibling distance=3cm]
-    \node[text=solarizedCyan] {2de9adf2b}
-        child{node[text=solarizedCyan] {a619a045a5}}
+    \node[text=solarizedCyan] {69ea0e9}
+        child{node[text=solarizedCyan] {0e7ce0c}}
         child{node[text=solarizedMagenta] {b98c9a9f9}
             child{node[text=solarizedBlue] {5716ca598}
                 child{node[text=solarizedGreen] {bar}}}
@@ -444,8 +444,8 @@ What does Git store?
 \frametitle{\texttt{git-commit-tree}}
 \begin{figure}
 \begin{tikzpicture}[sibling distance=3cm]
-    \node[text=solarizedCyan] {e0ea04248}
-        child{node[text=solarizedCyan] {2de9adf2b}}
+    \node[text=solarizedCyan] {32a5f01}
+        child{node[text=solarizedCyan] {69ea0e9}}
         child{node[text=solarizedMagenta] {68b757546}
             child{node[text=solarizedBlue] {5716ca598}
                 child{node[text=solarizedGreen] {bar}}}
@@ -500,7 +500,7 @@ What does Git store?
     \node[text=solarizedBlue] (foo) at (10, -10) {foo};
     \node[text=solarizedBlue] (hfoo) at (10, -8) {257cc564};
     \node[text=solarizedMagenta] (tree1) at (9, -6) {fcf0be4d};
-    \node[text=solarizedCyan] (commit1) at (5, -6) {a619a045a5};
+    \node[text=solarizedCyan] (commit1) at (5, -6) {0e7ce0c};
     \draw[-o,thick] (hfoo) -- (foo);
     \draw[-o,thick] (tree1) -- (hfoo);
     \draw[-o,thick] (commit1) -- (tree1);
@@ -517,7 +517,7 @@ What does Git store?
     \node[dashed,text=solarizedBlue] (hfoo) at (10, -8) {257cc564};
     \node[text=solarizedBlue] (hbar) at (8,  -8) {5716ca59};
     \node[text=solarizedMagenta] (tree1) at (9, -6) {fcf0be4d};
-    \node[text=solarizedCyan] (commit1) at (5, -6) {a619a045a5};
+    \node[text=solarizedCyan] (commit1) at (5, -6) {0e7ce0c};
     \draw[-o,thick] (hfoo) -- (foo);
     \draw[-o,thick] (hbar) -- (bar);
     \draw[-o,thick] (tree1) -- (hfoo);
@@ -535,8 +535,8 @@ What does Git store?
     \node[dashed,text=solarizedBlue] (hfoo) at (10, -8) {257cc564};
     \node[text=solarizedBlue] (hbar) at (8,  -8) {5716ca59};
     \node[text=solarizedMagenta] (tree2) at (9, -6) {b98c9a9f9};
-    \node[text=solarizedCyan] (commit2) at (5, -6) {2de9adf2b};
-    \node[text=solarizedCyan] (commit1) at (5, -8) {a619a045a5};
+    \node[text=solarizedCyan] (commit2) at (5, -6) {69ea0e9};
+    \node[text=solarizedCyan] (commit1) at (5, -8) {0e7ce0c};
     \draw[-o,thick] (hfoo) -- (foo);
     \draw[-o,thick] (hbar) -- (bar);
     \draw[-o,thick] (tree2) -- (hfoo);
@@ -556,9 +556,9 @@ What does Git store?
     \node[text=solarizedBlue] (hfoo) at (10, -8) {a3f555b6};
     \node[dashed,text=solarizedBlue] (hbar) at (8,  -8) {5716ca59};
     \node[text=solarizedMagenta] (tree3) at (9, -6) {68b75754};
-    \node[text=solarizedCyan] (commit3) at (5, -6) {e0ea04248};
-    \node[text=solarizedCyan] (commit2) at (5, -8) {2de9adf2b};
-    \node[text=solarizedCyan] (commit1) at (5, -10) {a619a045a5};
+    \node[text=solarizedCyan] (commit3) at (5, -6) {32a5f01};
+    \node[text=solarizedCyan] (commit2) at (5, -8) {69ea0e9};
+    \node[text=solarizedCyan] (commit1) at (5, -10) {0e7ce0c};
     \draw[-o,thick] (hfoo) -- (foo);
     \draw[-o,thick] (hbar) -- (bar);
     \draw[-o,thick] (tree2) -- (hfoo);
