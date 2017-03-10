@@ -1,5 +1,4 @@
-.PHONY: all clean
-
+.PHONY: all
 all: git-in-reverse.pdf
 
 %.pdf: %.tex references.bib
@@ -8,6 +7,7 @@ all: git-in-reverse.pdf
 	@xelatex -halt-on-error $<
 	@xelatex -halt-on-error $<
 
+.PHONY: clean
 clean:
 	@rm --force *.nav \
 				*.log \
