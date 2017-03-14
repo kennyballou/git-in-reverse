@@ -156,18 +156,6 @@ What does Git store?
 \end{itemize}
 \end{frame}
 
-\begin{frame}
-\frametitle{Git Objects}
-\begin{figure}
-\begin{tikzpicture}
-    \node[text=solarizedBlue] at (0,  0) {257cc5642}
-        child{node[text=solarizedGreen] {foo}};
-    \node[text=solarizedBlue] at (3,  0) {5716ca598}
-        child{node[text=solarizedGreen] {bar}};
-\end{tikzpicture}
-\end{figure}
-\end{frame}
-
 \begin{frame}[fragile]
 \frametitle{\texttt{git-init}}
 \lstinputlisting[language=bash,numbers=none]{code/1/1}
@@ -187,6 +175,19 @@ What does Git store?
 \frametitle{\texttt{git-hash-object}}
 \lstinputlisting[language=bash,numbers=none]{code/1/4}
 \end{frame}
+
+\begin{frame}
+\frametitle{Git Objects}
+\begin{figure}
+\begin{tikzpicture}
+    \node[text=solarizedBlue] at (0,  0) {257cc5642}
+        child{node[text=solarizedGreen] {foo}};
+    \node[text=solarizedBlue] at (3,  0) {5716ca598}
+        child{node[text=solarizedGreen] {bar}};
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-cat-file}}
@@ -218,19 +219,6 @@ What does Git store?
 \end{itemize}
 \end{frame}
 
-\begin{frame}
-\frametitle{Git Trees}
-\begin{figure}
-\begin{tikzpicture}[sibling distance=3cm]
-    \node[text=solarizedMagenta]{./}
-        child{node[text=solarizedBlue] {blob}
-            child {node[text=solarizedGreen] {foo}}}
-        child{node[text=solarizedBlue] {blob}
-            child {node[text=solarizedGreen] {bar}}};
-\end{tikzpicture}
-\end{figure}
-\end{frame}
-
 \begin{frame}[fragile]
 \frametitle{\texttt{git-update-index} and \texttt{git-write-tree}}
 \lstinputlisting[language=bash,numbers=none]{code/2/1}
@@ -259,7 +247,8 @@ What does Git store?
     \node[text=solarizedMagenta] at (0, 0) {fcf0be4d7}
         child{node[text=solarizedBlue] {257cc5642}
             child{node[text=solarizedGreen]{foo}}};
-    \node[text=solarizedBlue] at (3, -1) {5716ca598} child [missing] {};
+    \node[text=solarizedBlue] at (3, -1) {5716ca598}
+        child{node[text=solarizedGreen]{bar}};
 \end{tikzpicture}
 \end{figure}
 \end{frame}
@@ -300,13 +289,13 @@ What does Git store?
 \frametitle{Git Objects, Updated}
 \begin{figure}
 \begin{tikzpicture}[sibling distance=3cm]
-    \node[text=solarizedMagenta] at (0, 0) {68b75754}
-        child{node[text=solarizedBlue] {a3f555b64}
-            child{node[text=solarizedGreen]{foo 2}}}
+    \node[text=solarizedMagenta] at (3, 0) {68b75754}
         child{node[text=solarizedBlue] (bar_hash) {5716ca598}
-            child{node[text=solarizedGreen] {bar}}};
-    \node[text=solarizedMagenta] at (3, 0) (previous_hash) {b98c9a9f};
-    \node at (3, 1.5) (previous) {Previous Tree};
+            child{node[text=solarizedGreen] {bar}}}
+        child{node[text=solarizedBlue] {a3f555b64}
+            child{node[text=solarizedGreen]{foo 2}}};
+    \node[text=solarizedMagenta] at (0, 0) (previous_hash) {b98c9a9f};
+    \node at (0, 1.5) (previous) {Previous Tree};
     \draw[-o,thick] (previous_hash) -- (bar_hash);
     \draw[->,thick] (previous) -- (previous_hash);
 \end{tikzpicture}
@@ -324,16 +313,16 @@ What does Git store?
 \framesubtitle{Current Objects}
 \begin{figure}
 \begin{tikzpicture}[sibling distance=3cm]
-    \node[text=solarizedMagenta] at (0, 0) {68b75754}
-        child{node[text=solarizedBlue] {a3f555b64}
-            child{node[text=solarizedGreen]{foo 2}}}
-        child{node[text=solarizedBlue] {5716ca598}
-            child{node[text=solarizedGreen] {bar}}};
-    \node[text=solarizedMagenta] at (5, 0) {b98c9a9f}
+    \node[text=solarizedMagenta] at (0, 0) {b98c9a9f}
         child{node[text=solarizedBlue] {257cc5642}
             child{node[text=solarizedGreen]{foo}}}
         child{node[text=solarizedBlue] {5716ca598}
             child{node[text=solarizedGreen] {bar}}};
+    \node[text=solarizedMagenta] at (5, 0) {68b75754}
+        child{node[text=solarizedBlue] {5716ca598}
+            child{node[text=solarizedGreen] {bar}}}
+        child{node[text=solarizedBlue] {a3f555b64}
+            child{node[text=solarizedGreen]{foo 2}}};
 \end{tikzpicture}
 \end{figure}
 \end{frame}
@@ -343,18 +332,18 @@ What does Git store?
 \framesubtitle{Current Objects}
 \begin{figure}
 \begin{tikzpicture}[sibling distance=3cm]
-    \node at (0, 0) {Current Tree}
-        child{node[text=solarizedMagenta] {68b75754}
-            child{node[text=solarizedBlue] {a3f555b64}
-                child{node[text=solarizedGreen]{foo 2}}}
-            child{node[text=solarizedBlue] {5716ca598}
-                child{node[text=solarizedGreen] {bar}}}};
-    \node at (5, 0) {Old Tree}
+    \node at (0, 0) {Old Tree}
         child{node[text=solarizedMagenta] {b98c9a9f}
         child{node[text=solarizedBlue] {257cc5642}
             child{node[text=solarizedGreen]{foo}}}
         child{node[text=solarizedBlue] {5716ca598}
             child{node[text=solarizedGreen] {bar}}}};
+    \node at (5, 0) {Current Tree}
+        child{node[text=solarizedMagenta] {68b75754}
+            child{node[text=solarizedBlue] {5716ca598}
+                child{node[text=solarizedGreen] {bar}}}
+            child{node[text=solarizedBlue] {a3f555b64}
+                child{node[text=solarizedGreen]{foo 2}}}};
 \end{tikzpicture}
 \end{figure}
 \end{frame}
@@ -364,16 +353,16 @@ What does Git store?
 \framesubtitle{The Beginnings of a DAG}
 \begin{figure}
 \begin{tikzpicture}[sibling distance=3cm]
-    \node at (0, 0) {Current Tree}
+    \node at (0, 0) {Old Tree}
+        child{node[text=solarizedMagenta] {b98c9a9f}
+        child{node[text=solarizedBlue] {257cc5642}
+            child{node[text=solarizedGreen]{foo}}}
+        child{node[text=solarizedBlue] (bar_hash) {5716ca598}
+            child{node[text=solarizedGreen] {bar}}}};
+    \node at (4, 0) {Current Tree}
         child{node[text=solarizedMagenta] (new_tree) {68b75754}
             child{node[text=solarizedBlue] {a3f555b64}
                 child{node[text=solarizedGreen]{foo 2}}}};
-    \node at (4, 0) {Old Tree}
-        child{node[text=solarizedMagenta] {b98c9a9f}
-        child{node[text=solarizedBlue] (bar_hash) {5716ca598}
-            child{node[text=solarizedGreen] {bar}}}
-        child{node[text=solarizedBlue] {257cc5642}
-            child{node[text=solarizedGreen]{foo}}}};
     \draw[-o,thick] (new_tree) edge (bar_hash);
 \end{tikzpicture}
 \end{figure}
