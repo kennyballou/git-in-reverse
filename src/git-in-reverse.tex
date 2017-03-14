@@ -25,17 +25,14 @@
     frame=signle,
     keepspaces=true,
     columns=flexible,
-    language=Java,
-    numbers=left,
+    language=bash,
+    numbers=none,
     numbersep=5pt,
     numberstyle=\tiny\color{solarizedBase00},
     showspaces=false,
     showstringspaces=false,
     stepnumber=1,
     showtabs=false,
-    stringstyle=\color{solarizedMagenta},
-    keywordstyle=\color{solarizedCyan},
-    commentstyle=\color{solarizedGreen},
     tabsize=2
 }
 
@@ -158,22 +155,22 @@ What does Git store?
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-init}}
-\lstinputlisting[language=bash,numbers=none]{code/1/1}
+\lstinputlisting{code/1/1}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Results of \texttt{git-init}}
-\lstinputlisting[language=bash,numbers=none]{code/1/2}
+\lstinputlisting{code/1/2}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-hash-object}}
-\lstinputlisting[language=bash,numbers=none]{code/1/3}
+\lstinputlisting{code/1/3}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-hash-object}}
-\lstinputlisting[language=bash,numbers=none]{code/1/4}
+\lstinputlisting{code/1/4}
 \end{frame}
 
 \begin{frame}
@@ -191,12 +188,12 @@ What does Git store?
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-cat-file}}
-\lstinputlisting[language=bash,numbers=none]{code/1/5}
+\lstinputlisting{code/1/5}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Raw Access to Git Objects}
-\lstinputlisting[language=bash,numbers=none]{code/1/6}
+\lstinputlisting{code/1/6}
 \end{frame}
 
 \begin{frame}
@@ -221,7 +218,7 @@ What does Git store?
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-update-index} and \texttt{git-write-tree}}
-\lstinputlisting[language=bash,numbers=none]{code/2/1}
+\lstinputlisting{code/2/1}
 \end{frame}
 
 \begin{frame}
@@ -237,7 +234,7 @@ What does Git store?
 
 \begin{frame}[fragile]
 \frametitle{Current Git Objects}
-\lstinputlisting[language=bash,numbers=none]{code/2/2}
+\lstinputlisting{code/2/2}
 \end{frame}
 
 \begin{frame}
@@ -255,12 +252,12 @@ What does Git store?
 
 \begin{frame}[fragile]
 \frametitle{Adding \texttt{bar.txt}}
-\lstinputlisting[language=bash,numbers=none]{code/2/3}
+\lstinputlisting{code/2/3}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Git Objects}
-\lstinputlisting[language=bash,numbers=none]{code/2/4}
+\lstinputlisting{code/2/4}
 \end{frame}
 
 \begin{frame}
@@ -282,7 +279,7 @@ What does Git store?
 
 \begin{frame}[fragile]
 \frametitle{Modifying Files}
-\lstinputlisting[language=bash,numbers=none]{code/2/5}
+\lstinputlisting{code/2/5}
 \end{frame}
 
 \begin{frame}
@@ -305,7 +302,7 @@ What does Git store?
 \begin{frame}[fragile]
 \frametitle{Modifying Files}
 \framesubtitle{Current Objects}
-\lstinputlisting[language=bash,numbers=none]{code/2/6}
+\lstinputlisting{code/2/6}
 \end{frame}
 
 \begin{frame}
@@ -389,7 +386,7 @@ What does Git store?
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-commit-tree}}
-\lstinputlisting[language=bash,numbers=none]{code/3/1}
+\lstinputlisting{code/3/1}
 \end{frame}
 
 \begin{frame}
@@ -406,7 +403,7 @@ What does Git store?
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-commit-tree}}
-\lstinputlisting[language=bash,numbers=none]{code/3/2}
+\lstinputlisting{code/3/2}
 \end{frame}
 
 \begin{frame}
@@ -426,7 +423,7 @@ What does Git store?
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-commit-tree}}
-\lstinputlisting[language=bash,numbers=none]{code/3/3}
+\lstinputlisting{code/3/3}
 \end{frame}
 
 \begin{frame}
@@ -446,7 +443,7 @@ What does Git store?
 
 \begin{frame}[fragile]
 \frametitle{Git± History}
-\lstinputlisting[language=bash,numbers=none]{code/3/4}
+\lstinputlisting{code/3/4}
 \end{frame}
 
 \begin{frame}
@@ -596,13 +593,13 @@ What does Git store?
 \begin{frame}[fragile]
 \frametitle{Creating Packfiles}
 \framesubtitle{\texttt{git-pack-objects}}
-\lstinputlisting[language=bash,numbers=none]{code/packfiles/2}
+\lstinputlisting{code/packfiles/2}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Creating Packfiles}
 \framesubtitle{\texttt{git-gc}}
-\lstinputlisting[language=bash,numbers=none]{code/packfiles/3}
+\lstinputlisting{code/packfiles/3}
 \end{frame}
 
 \section{Using Git±}
@@ -642,7 +639,7 @@ Combines:
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-add}}
-\lstinputlisting[language=bash,numbers=none]{code/4/1}
+\lstinputlisting{code/4/1}
 \end{frame}
 
 \subsection{git-commit}
@@ -660,7 +657,7 @@ Combines:
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-commit}}
-\lstinputlisting[language=bash,numbers=none]{code/4/2}
+\lstinputlisting{code/4/2}
 \end{frame}
 
 \subsection{git-mv}
@@ -678,7 +675,7 @@ Combines:
 
 \begin{frame}
 \frametitle{\texttt{git-mv}}
-\lstinputlisting[language=bash,numbers=none]{code/4/3}
+\lstinputlisting{code/4/3}
 \end{frame}
 
 \subsection{git-rm}
@@ -693,7 +690,7 @@ Combines:
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-rm}}
-\lstinputlisting[language=bash,numbers=none]{code/4/4}
+\lstinputlisting{code/4/4}
 \end{frame}
 
 \begin{frame}
@@ -715,42 +712,42 @@ Combines:
 
 \begin{frame}[fragile]
 \frametitle{Git± Branches}
-\lstinputlisting[language=bash,numbers=none]{code/5/1}
+\lstinputlisting{code/5/1}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-branch}}
 Branches can be created with a simple invocation of \texttt{git-branch}:
-\lstinputlisting[language=bash,numbers=none]{code/5/2}
+\lstinputlisting{code/5/2}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-checkout}}
 After the branch is created, we can switch into that branch with
 \texttt{git-checkout}:
-\lstinputlisting[language=bash,numbers=none]{code/5/3}
+\lstinputlisting{code/5/3}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-checkout -b}}
 Or, we can do all in the same command:
-\lstinputlisting[language=bash,numbers=none]{code/5/4}
+\lstinputlisting{code/5/4}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Git± Branches}
 Currently, all branches are pointing to the same commit:
-\lstinputlisting[language=bash,numbers=none]{code/5/5}
+\lstinputlisting{code/5/5}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Git± Branches}
-\lstinputlisting[language=bash,numbers=none]{code/5/6}
+\lstinputlisting{code/5/6}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Git± Branches}
-\lstinputlisting[language=bash,numbers=none]{code/5/7}
+\lstinputlisting{code/5/7}
 \end{frame}
 
 \subsection{Merging}
@@ -840,7 +837,7 @@ Currently, all branches are pointing to the same commit:
 \item{Otherwise, can be created with \texttt{git-remote}}
 \end{itemize}
 Example Usage:
-\lstinputlisting[language=bash,numbers=none]{code/5/8}
+\lstinputlisting{code/5/8}
 \end{frame}
 
 \begin{frame}
@@ -1017,7 +1014,7 @@ Or, more realistically, a great way to have a bad time\ldots{}
 \frametitle{Writing Good Commit Messages}
 \framesubtitle{Why?}
 Because \texttt{git-log} output \textit{needs} to be beautiful:
-\lstinputlisting[numbers=none]{code/gitlog}
+\lstinputlisting{code/gitlog}
 \end{frame}
 
 \subsection{git-pull}
@@ -1030,10 +1027,7 @@ Because \texttt{git-log} output \textit{needs} to be beautiful:
 \texttt{git pull} unless you actually want to merge the remote branch.''}
 \item{I personally prefer creating an alias for \texttt{git-remote}}
 \end{itemize}
-\lstinputlisting[%
-    language=bash,
-    numbers=none,
-    title=\texttt{\~{}/.gitconfig}]{code/5/9}
+\lstinputlisting[title=\texttt{\~{}/.gitconfig}]{code/5/9}
 \end{frame}
 
 \subsection{Moving Forward}
