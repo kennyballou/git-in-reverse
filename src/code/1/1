@@ -1,3 +1,13 @@
-cd /tmp
-git init foo
-cd foo
+% cd /tmp
+% mkdir -p foo/.git/objects/{info,pack}
+% mkdir -p foo/.git/hooks
+% mkdir -p foo/.git/refs/{tags,heads}
+% echo "ref: refs/heads/master" > foo/.git/HEAD
+% cat << EOF > foo/.git/config
+>[core]
+>	repositoryformatversion = 0
+>	filemode = true
+>	bare = false
+>	logallrefupdates = true
+EOF
+% cd foo
