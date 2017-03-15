@@ -1,0 +1,17 @@
+% git init foobar
+Initialized empty Git repository in /tmp/tmp.xbHJFvplCy/foobar/.git/
+% cd foobar
+± find .git
+.git
+.git/objects
+.git/objects/info
+.git/objects/pack
+.git/config
+.git/HEAD
+.git/info
+.git/info/exclude
+.git/description
+.git/hooks
+.git/refs
+.git/refs/tags
+.git/refs/heads

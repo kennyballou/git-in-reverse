@@ -1,4 +1,4 @@
-± cd /tmp; git init bar; cd /tmp/bar
+% cd $(mktemp -d); git init bar; cd bar
 ± echo bar > bar.txt
 ± git add bar.txt
 ± git status

@@ -18,7 +18,7 @@
 \setbeamertemplate{headline}{}
 
 \lstset{%
-    basicstyle=\footnotesize\ttfamily,
+    basicstyle=\footnotesize{}\ttfamily{},
     breakatwhitespace=false,
     breaklines=true,
     captionpos=b,
@@ -40,6 +40,7 @@
 \subtitle{A Backwards Introduction to \\{} the ``information manager from
 hell'' [e83c51633]}
 \author[Ballou]{Kenny Ballou}
+\institute[/dev/null]{/dev/null > labs}
 
 \AtBeginSection[]{%
     \begin{frame}
@@ -77,12 +78,16 @@ hell'' [e83c51633]}
 \end{frame}
 
 \begin{frame}
-\frametitle{Who am I?}
+\frametitle{About Me}
 \begin{itemize}
 \item{Hacker}
 \item{Developer (read gardener)}
 \item{Mathematician}
 \item{Student}
+\item{\href{https://twitter.com/kennyballou}{@kennyballou}}
+\item{\href{https://github.com}{github/kennyballou}}
+\item{\url{https://git.devnulllabs.io}}
+\item{\url{https://kennyballou.com}}
 \end{itemize}
 
 \end{frame}
@@ -96,11 +101,12 @@ hell'' [e83c51633]}
 \end{figure}
 \end{frame}
 
+\subsection{Information Manager from Hell}
 \begin{frame}
 \frametitle{Git±}
 \framesubtitle{What is Git?}
 \begin{itemize}
-\item<2->{Distributed Versioning Control system (D-VCS)}
+\item<2->{Distributed Version Control System (D-VCS)}
 \item<3->{``A way to manage code''}
 \item<4->{``My preferred VCS tool''}
 \item<5->{The ``information manager from hell''}
@@ -118,11 +124,14 @@ hell'' [e83c51633]}
 \frametitle{Git±}
 What does Git store?
 \begin{itemize}
-\item<2-4>{Objects}
-\item<3-3>{``Packs''}
+\item<2-6>{Objects}
+\item<3-5>{Commits}
+\item<4-5>{Code}
+\item<5-5>{``Packs''}
 \end{itemize}
 \end{frame}
 
+\subsection{Terms and Definitions}
 \begin{frame}
 \frametitle{Git Definitions}
 \begin{itemize}
@@ -142,7 +151,7 @@ What does Git store?
 \end{itemize}
 \end{frame}
 
-\section{Plumbing}
+\section{Git± Plumbing}
 \subsection{Blobs}
 \begin{frame}
 \frametitle{Git Objects}
@@ -200,7 +209,7 @@ What does Git store?
 \frametitle{Git Object Limitations}
 \begin{itemize}
 \item{Remembering 40 character SHA's is hard}
-\item{What about file names? Where did that go?}
+\item{What about file names? Where did those go?}
 \item{Big files?}
 \end{itemize}
 \end{frame}
@@ -369,7 +378,7 @@ What does Git store?
 \frametitle{Limitation of Git± Trees}
 \begin{itemize}
 \item{Remembering SHA's is \textit{still} hard}
-\item{No metadata about the who, when, and why}
+\item{No metadata about who, when, and why}
 \end{itemize}
 \end{frame}
 
@@ -613,6 +622,20 @@ What does Git store?
 \end{itemize}
 \end{frame}
 
+\subsection{git-init}
+\begin{frame}
+\frametitle{\texttt{git-init}}
+\begin{itemize}
+\item{Create new local repository}
+\item{Better than manually creating a repository}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\texttt{git-init}}
+\lstinputlisting[basicstyle=\scriptsize{}\ttfamily{}]{code/4/git-init}
+\end{frame}
+
 \subsection{git-status}
 \begin{frame}
 \frametitle{\texttt{git-status}}
@@ -632,8 +655,8 @@ What does Git store?
 \frametitle{\texttt{git-add}}
 Combines:
 \begin{itemize}
-\item<1->{\texttt{git-hash-object}}
-\item<2->{\texttt{git-update-index}}
+\item{\texttt{git-hash-object}}
+\item{\texttt{git-update-index}}
 \end{itemize}
 \end{frame}
 
