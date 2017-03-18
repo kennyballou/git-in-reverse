@@ -163,7 +163,7 @@ What does Git store?
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Initializing a Repository}
+\frametitle{Initializing a Repository the Hard Way}
 \lstinputlisting{code/1/1}
 \end{frame}
 
@@ -295,12 +295,14 @@ What does Git store?
 \frametitle{Git Objects, Updated}
 \begin{figure}
 \begin{tikzpicture}[sibling distance=3cm]
-    \node[text=solarizedMagenta] at (3, 0) {68b75754}
+    \node[text=solarizedMagenta] at (4, 0) {68b75754}
         child{node[text=solarizedBlue] (bar_hash) {5716ca598}
             child{node[text=solarizedGreen] {bar}}}
         child{node[text=solarizedBlue] {a3f555b64}
             child{node[text=solarizedGreen]{foo 2}}};
-    \node[text=solarizedMagenta] at (0, 0) (previous_hash) {b98c9a9f};
+    \node[text=solarizedMagenta] at (0, 0) (previous_hash) {b98c9a9f}
+        child{node[text=solarizedBlue] (foo_hash) {257cc5642}
+            child{node[text=solarizedGreen]{foo}}};
     \node at (0, 1.5) (previous) {Previous Tree};
     \draw[-o,thick] (previous_hash) -- (bar_hash);
     \draw[->,thick] (previous) -- (previous_hash);
@@ -312,25 +314,6 @@ What does Git store?
 \frametitle{Modifying Files}
 \framesubtitle{Current Objects}
 \lstinputlisting{code/2/6}
-\end{frame}
-
-\begin{frame}
-\frametitle{Modifying Files}
-\framesubtitle{Current Objects}
-\begin{figure}
-\begin{tikzpicture}[sibling distance=3cm]
-    \node[text=solarizedMagenta] at (0, 0) {b98c9a9f}
-        child{node[text=solarizedBlue] {257cc5642}
-            child{node[text=solarizedGreen]{foo}}}
-        child{node[text=solarizedBlue] {5716ca598}
-            child{node[text=solarizedGreen] {bar}}};
-    \node[text=solarizedMagenta] at (5, 0) {68b75754}
-        child{node[text=solarizedBlue] {5716ca598}
-            child{node[text=solarizedGreen] {bar}}}
-        child{node[text=solarizedBlue] {a3f555b64}
-            child{node[text=solarizedGreen]{foo 2}}};
-\end{tikzpicture}
-\end{figure}
 \end{frame}
 
 \begin{frame}
@@ -390,6 +373,7 @@ What does Git store?
 \item{ZLIB compressed blob}
 \item{Stores metadata about changes}
 \item{Stores a reference to the tree being saved}
+\item{Created using \texttt{git-commit-tree}}
 \end{itemize}
 \end{frame}
 
@@ -568,7 +552,7 @@ What does Git store?
 \subsection{Packfiles}
 
 \begin{frame}
-\frametitle{Packfiles}
+\frametitle{Git± Packfiles}
 \begin{itemize}
 \item<2->{Tight Object Storage}
 \item<3->{``Packs'' Objects Together}
@@ -593,10 +577,7 @@ What does Git store?
 \frametitle{Creating Packfiles}
 \framesubtitle{\texttt{git-pack-objects}}
 \lstinputlisting[%
-    language=bash,
-    numbers=none,
-    basicstyle=\scriptsize{}\ttfamily{},
-    columns=fixed]{code/packfiles/1}
+    basicstyle=\scriptsize{}\ttfamily{}]{code/packfiles/1}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -609,6 +590,18 @@ What does Git store?
 \frametitle{Creating Packfiles}
 \framesubtitle{\texttt{git-gc}}
 \lstinputlisting{code/packfiles/3}
+\end{frame}
+
+\begin{frame}
+\frametitle{Git± Packfiles}
+\begin{itemize}
+\item{``Tight Object Format''}
+\item{Opaque Format}
+\begin{itemize}
+\item{Not Accessible}
+\end{itemize}
+\item{Plumbing commands will still work}
+\end{itemize}
 \end{frame}
 
 \section{Using Git±}
