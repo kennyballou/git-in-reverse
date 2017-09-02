@@ -898,10 +898,12 @@ Or, more realistically, a great way to have a bad time\ldots{}
 \node (C0) at (1, 0) {C0};
 \node (C1) at (3, 0) {C1};
 \node (C2) at (5, 0) {C2};
+\node (ours) at (5, 1) {ours};
 
 \draw[-o,thick,dotted] (root) -- (C0);
 \draw[-o,thick] (C0) -- (C1);
 \draw[-o,thick] (C1) -- (C2);
+\draw[->,thick] (ours) -- (C2);
 
 \end{tikzpicture}
 \end{figure}
@@ -915,14 +917,18 @@ Or, more realistically, a great way to have a bad time\ldots{}
 \node (C0) at (1, 0) {C0};
 \node (C1) at (3, 0) {C1};
 \node (C2) at (5, 0) {C2};
+\node (ours) at (5, 1) {ours};
 \node[text=solarizedMagenta] (U1) at (3.5, -1) {U1};
 \node[text=solarizedMagenta] (U2) at (5.5, -1) {U2};
+\node[text=solarizedMagenta] (theirs) at (5.5, -2) {theirs};
 
 \draw[-o,thick,dotted] (root) -- (C0);
 \draw[-o,thick] (C0) -- (C1);
 \draw[-o,thick] (C0) to[out=0,in=180] (U1);
 \draw[-o,thick] (C1) -- (C2);
 \draw[-o,thick] (U1) -- (U2);
+\draw[->,thick] (ours) -- (C2);
+\draw[->,thick] (theirs) -- (U2);
 
 \end{tikzpicture}
 \end{figure}
@@ -936,14 +942,18 @@ Or, more realistically, a great way to have a bad time\ldots{}
 \node (C0) at (1, 0) {C0};
 \node (C1) at (3, 2) {C1};
 \node (C2) at (5, 2) {C2};
+\node (ours) at (5, 3) {ours};
 \node[text=solarizedMagenta] (U1) at (3, 0) {U1};
 \node[text=solarizedMagenta] (U2) at (5, 0) {U2};
+\node[text=solarizedMagenta] (theirs) at (5, -1) {theirs};
 
 \draw[-o,thick,dotted] (root) -- (C0);
 \draw[-o,thick] (C0) -- (U1);
 \draw[-o,thick] (C1) -- (C2);
 \draw[-o,thick] (U1) -- (U2);
 \draw[-o,thick,dotted] (C0) to[out=0,in=180] (C1);
+\draw[->,thick] (ours) -- (C2);
+\draw[->,thick] (theirs) -- (U2);
 
 \end{tikzpicture}
 \end{figure}
@@ -959,12 +969,16 @@ Or, more realistically, a great way to have a bad time\ldots{}
 \node[text=solarizedOrange] (C2) at (9, 0) {C2'};
 \node (U1) at (3, 0) {U1};
 \node (U2) at (5, 0) {U2};
+\node (theirs) at (5, -1) {theirs};
+\node (ours) at (9, 1) {ours};
 
 \draw[-o,thick,dotted] (root) -- (C0);
 \draw[-o,thick] (C0) -- (U1);
 \draw[-o,thick] (U1) -- (U2);
 \draw[-o,thick] (U2) -- (C1);
 \draw[-o,thick] (C1) -- (C2);
+\draw[->,thick] (ours) -- (C2);
+\draw[->,thick] (theirs) -- (U2);
 
 \end{tikzpicture}
 \end{figure}
@@ -983,7 +997,7 @@ Or, more realistically, a great way to have a bad time\ldots{}
 \item{When \textbf{not} to rebase?}
 \begin{itemize}
 \item{Non-Private Tree}
-\item{Other people's commits}
+\item{Other people's history (commits, usually)}
 \item{Preference toward chronological history}
 \end{itemize}
 \end{itemize}
