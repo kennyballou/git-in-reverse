@@ -152,15 +152,6 @@ What does Git store?
 \end{frame}
 
 \section{Git± Plumbing}
-\subsection{Blobs}
-\begin{frame}
-\frametitle{Git Objects}
-\begin{itemize}
-\item{ZLIB compressed blob}
-\item{Dumb containers, storing provided content}
-\item{Created using the \texttt{git-hash-object} plumbing command}
-\end{itemize}
-\end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Initializing a Repository the Hard Way}
@@ -170,6 +161,16 @@ What does Git store?
 \begin{frame}[fragile]
 \frametitle{Initialization Results}
 \lstinputlisting{code/1/2}
+\end{frame}
+
+\subsection{Blobs}
+\begin{frame}
+\frametitle{Git Objects}
+\begin{itemize}
+\item{ZLIB compressed blob}
+\item{Dumb containers, storing provided content}
+\item{Created using the \texttt{git-hash-object} plumbing command}
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
