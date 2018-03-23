@@ -11,6 +11,7 @@
 \usepackage{color}
 \usepackage{tikz}
 \usetikzlibrary{trees, shapes.misc, arrows}
+\usepackage{fancyvrb}
 \usepackage{pgfkeys}
 \usepackage{graphicx}
 \usepackage[normalem]{ulem}
@@ -1056,6 +1057,49 @@ Or, more realistically, a great way to have a bad time\ldots{}
 \framesubtitle{Why?}
 Because \texttt{git-log} output \textit{needs} to be beautiful:
 \lstinputlisting{code/gitlog}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Writing Good Commit Messages}
+  \framesubtitle{Examples}
+\begin{Verbatim}[fontsize=\small]
+i dont think this stuff is needed
+\end{Verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Writing Good Commit Messages}
+  \framesubtitle{Examples}
+\begin{Verbatim}[fontsize=\scriptsize]
+Convert ROM read access enable/disable string parsing to use the
+`kstrtobool` function.
+
+This fixes Bugzilla Bug 111301 -- Sysfs PCI rom file functionality does
+not match documentation.
+
+bugzilla: https://bugzilla.kernel.org/show_bug.cgi?id=111301
+
+Reported-by: googlegot@xxxxxxxxx
+Signed-off-by: Kenny Ballou <kballou@xxxxxxxxxxxxxx>
+\end{Verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Writing Good Commit Messages}
+  \framesubtitle{Examples}
+\begin{Verbatim}[fontsize=\scriptsize]
+object.h: update flag allocation comment
+
+Since the "flags" is shared, it's a good idea to keep track of who
+uses what bit. When we need to use more flags in library code, we can
+be sure it won't be re-used for another purpose by some caller.
+
+While at there, fix the location of "5" (should be in a different
+column than "4" two lines down)
+
+Signed-off-by: Nguyễn Thái Ngọc Duy <pclouds@gmail.com>
+Signed-off-by: Junio C Hamano <gitster@pobox.com>
+\end{Verbatim}
 \end{frame}
 
 \subsection{git-pull}
