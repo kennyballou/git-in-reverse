@@ -1110,7 +1110,8 @@ Signed-off-by: Junio C Hamano <gitster@pobox.com>
 \item{Will force a merge, if drift between remote and local}
 \item{From the Git documentation~\cite{website:gitworkflows7}, ``Do not use
 \texttt{git pull} unless you actually want to merge the remote branch.''}
-\item{I personally prefer creating an alias for \texttt{git-remote}}
+\item{I personally prefer using \texttt{git-fetch} and \texttt{git-merge}}
+\item{Another option: use \texttt{--ff-only} when pulling}
 \end{itemize}
 \lstinputlisting[title=\texttt{\~{}/.gitconfig}]{code/5/9}
 \end{frame}

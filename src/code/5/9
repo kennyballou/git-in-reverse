@@ -1,2 +1,2 @@
-[alias]
-	up = !git remote update -p
+[pull]
+	ff = only
