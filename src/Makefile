@@ -2,20 +2,20 @@
 all: git-in-reverse.pdf
 
 %.pdf: %.tex references.bib
-	@xelatex -halt-on-error $<
-	@bibtex $(basename $<).aux
-	@xelatex -halt-on-error $<
-	@xelatex -halt-on-error $<
+	latexmk -pdfxelatex -latexoption=-shell-escape $<
 
 .PHONY: clean
 clean:
-	@rm --force *.nav \
-				*.log \
-				*.out \
-				*.pdf \
-				*.toc \
-				*.snm \
-				*.aux \
-				*.bbl \
-				*.blg \
-				*.vrb
+	-rm  *.nav \
+		 *.log \
+		 *.out \
+		 *.pdf \
+		 *.toc \
+		 *.snm \
+		 *.aux \
+		 *.bbl \
+		 *.blg \
+		 *.vrb \
+		 *.fls \
+		 *.fdb_latexmk \
+		 *.xdv
