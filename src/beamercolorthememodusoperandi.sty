@@ -1,0 +1,136 @@
+
+\ProvidesPackage{beamercolorthememodusoperandi}
+\RequirePackage{etoolbox}
+\RequirePackage{kvoptions}
+
+\SetupKeyvalOptions{
+  family=modusoperandi,
+  prefix=modusoperandi@,
+}
+
+\DeclareStringOption[blue]{accent}[blue]
+\ProcessKeyvalOptions*
+
+\include{modusoperandi.sty}
+
+% \definecolor{modusoperandiBgMain}{HTML}{ffffff}
+% \definecolor{modusoperandiBgDim}{HTML}{f2f2f2}
+% \definecolor{modusoperandiFgMain}{HTML}{000000}
+% \definecolor{modusoperandiFgDim}{HTML}{595959}
+% \definecolor{modusoperandiFgAlt}{HTML}{193668}
+% \definecolor{modusoperandiBgActive}{HTML}{c4c4c4}
+% \definecolor{modusoperandiBgInactive}{HTML}{e0e0e0}
+% \definecolor{modusoperandiBorder}{HTML}{9f9f9f}
+
+% \definecolor{modusoperandiRed}{HTML}{a60000}
+% \definecolor{modusoperandiRedWarmer}{HTML}{972500}
+% \definecolor{modusoperandiRedCooler}{HTML}{a0132f}
+% \definecolor{modusoperandiRedFaint}{HTML}{7f0000}
+% \definecolor{modusoperandiRedIntense}{HTML}{d00000}
+% \definecolor{modusoperandiGreen}{HTML}{006800}
+% \definecolor{modusoperandiGreenWarmer}{HTML}{316500}
+% \definecolor{modusoperandiGreenCooler}{HTML}{00663f}
+% \definecolor{modusoperandiGreenFaint}{HTML}{2a5045}
+% \definecolor{modusoperandiGreenIntense}{HTML}{008900}
+% \definecolor{modusoperandiYellow}{HTML}{6f5500}
+% \definecolor{modusoperandiYellowWarmer}{HTML}{884900}
+% \definecolor{modusoperandiYellowCooler}{HTML}{7a4f2f}
+% \definecolor{modusoperandiYellowFaint}{HTML}{624416}
+% \definecolor{modusoperandiYellowIntense}{HTML}{808000}
+% \definecolor{modusoperandiBlue}{HTML}{0031a9}
+% \definecolor{modusoperandiBlueWarmer}{HTML}{3548cf}
+% \definecolor{modusoperandiBlueCooler}{HTML}{0000b0}
+% \definecolor{modusoperandiBlueFaint}{HTML}{003497}
+% \definecolor{modusoperandiBlueIntense}{HTML}{0000ff}
+% \definecolor{modusoperandiMagenta}{HTML}{721045}
+% \definecolor{modusoperandiMagentaWarmer}{HTML}{8f0075}
+% \definecolor{modusoperandiMagentaCooler}{HTML}{531ab6}
+% \definecolor{modusoperandiMagentaFaint}{HTML}{7c318f}
+% \definecolor{modusoperandiMagentaIntense}{HTML}{dd22dd}
+% \definecolor{modusoperandiCyan}{HTML}{005e8b}
+% \definecolor{modusoperandiCyanWarmer}{HTML}{3f578f}
+% \definecolor{modusoperandiCyanCooler}{HTML}{005f5f}
+% \definecolor{modusoperandiCyanFaint}{HTML}{005077}
+% \definecolor{modusoperandiCyanIntense}{HTML}{008899}
+
+% Set Accent color
+% Ugly. Should be done with a switch
+\ifdefstring{\modusoperandi@accent}{yellow}{
+  \colorlet{modusoperandiAccent}{modusoperandiYellow}
+}{}
+\ifdefstring{\modusoperandi@accent}{red}{
+  \colorlet{modusoperandiAccent}{modusoperandiRedWarmer}
+}{}
+\ifdefstring{\modusoperandi@accent}{magenta}{
+  \colorlet{modusoperandiAccent}{modusoperandiMagenta}
+}{}
+\ifdefstring{\modusoperandi@accent}{blue}{
+  \colorlet{modusoperandiAccent}{modusoperandiBlueWarmer}
+}{}
+\ifdefstring{\modusoperandi@accent}{cyan}{
+  \colorlet{modusoperandiAccent}{modusoperandiCyanWarmer}
+}{}
+\ifdefstring{\modusoperandi@accent}{green}{
+  \colorlet{modusoperandiAccent}{modusoperandiGreen}
+}{}
+
+\mode<presentation>
+
+\setbeamercolor{normal text}{fg=modusoperandiFgMain, bg=modusoperandiBgDim}
+\setbeamercolor{alerted text}{fg=modusoperandiFgMain, bg=modusoperandiBgMain}
+% based css pre element
+\setbeamercolor{example text}{fg=modusoperandiFgAlt, bg=modusoperandiBgMain}
+
+% Header and footer from CSS
+\setbeamercolor{footline}{bg=modusoperandiBgInactive,fg=modusoperandiFgAlt}
+\setbeamercolor{headline}{bg=modusoperandiBgInactive,fg=modusoperandiFgAlt}
+
+% Titles
+\setbeamercolor*{titlelike}{fg=modusoperandiAccent}
+\setbeamercolor*{frametitle}{fg=modusoperandiAccent}
+\setbeamercolor*{title}{fg=modusoperandiAccent}
+
+% Structure elements use css style for header
+\setbeamercolor*{structure}{bg=modusoperandiBgMain, fg=modusoperandiFgMain}
+
+% Do not mess with subtle colors in palette. I don't like it.
+\setbeamercolor*{palette primary}{bg=modusoperandiBgInactive, fg=modusoperandiFgMain}
+\setbeamercolor*{palette secondary}{bg=modusoperandiBgInactive, fg=modusoperandiFgMain}
+\setbeamercolor*{palette tertiary}{bg=modusoperandiBgInactive, fg=modusoperandiFgMain}
+\setbeamercolor*{palette quaternary}{bg=modusoperandiBgInactive, fg=modusoperandiFgMain}
+
+% Make Blocks slightly lighter/darker
+\setbeamercolor{block title}{fg=modusoperandiAccent, bg=modusoperandiBgActive}
+\setbeamercolor{block title alerted}{fg=modusoperandiRedWarmer, bg=modusoperandiBgActive}
+%\setbeamercolor{block title example}{}
+
+\setbeamercolor{block body}{parent=normal text, bg=modusoperandiBgActive}
+\setbeamercolor{block body alerted}{parent=normal text, fg=modusoperandiMagenta, bg=modusoperandiBgActive}
+% \setbeamercolor{block body example}{}
+
+% same as footline
+% Set Sidebar and footline to use the css style for footer
+\setbeamercolor*{sidebar}{parent=headline}
+\setbeamercolor*{palette sidebar primary}{fg=modusoperandiBgInactive, fg=modusoperandiFgMain}
+\setbeamercolor*{palette sidebar secondary}{fg=modusoperandiBgInactive, fg=modusoperandiFgMain}
+\setbeamercolor*{palette sidebar tertiary}{fg=modusoperandiBgInactive, fg=modusoperandiFgMain}
+\setbeamercolor*{palette sidebar quaternary}{fg=modusoperandiBgInactive, fg=modusoperandiFgMain}
+
+% border-color for headings
+\setbeamercolor{separation line}{fg=modusoperandiBorder}
+\setbeamercolor{fine separation line}{fg=modusoperandiBorder}
+
+\setbeamercolor*{section in sidebar shaded}{parent=palette sidebar primary}
+% a.hover.navlink in CSS
+\setbeamercolor*{section in sidebar}{parent=palette sidebar primary, fg=modusoperandFgDim}
+\setbeamercolor*{subsection in sidebar}{parent=section in sidebar}
+\setbeamercolor*{subsection in sidebar shaded}{parent=section in sidebar shaded}
+
+\mode
+<all>
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
