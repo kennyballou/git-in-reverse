@@ -7,7 +7,7 @@
 \setmainfont{DejaVuSans}
 \usepackage{booktabs}
 \usepackage{lmodern}
-\usepackage{listings}
+\usepackage{minted}
 \usepackage{color}
 \usepackage{tikz}
 \usetikzlibrary{trees, shapes.misc, arrows}
@@ -16,26 +16,13 @@
 \usepackage{graphicx}
 \usepackage[normalem]{ulem}
 \graphicspath{{./images/}}
-\setbeamertemplate{headline}{}
+% \setbeamertemplate{headline}{}
+\setbeamertemplate{navigation symbols}{}
 
-\lstset{%
-    basicstyle=\footnotesize{}\ttfamily{},
-    breakatwhitespace=false,
-    breaklines=true,
-    captionpos=b,
-    frame=signle,
-    keepspaces=true,
-    columns=flexible,
-    language=bash,
-    numbers=none,
-    numbersep=5pt,
-    numberstyle=\tiny\color{modusoperandiFgDim},
-    showspaces=false,
-    showstringspaces=false,
-    stepnumber=1,
-    showtabs=false,
-    tabsize=2
+\setminted{%
+  fontsize=\footnotesize{}
 }
+
 
 \title{Learning Git± in Reverse}
 \subtitle{A Backwards Introduction to \\{} the ``information manager from
@@ -167,12 +154,12 @@ What does Git store?
 
 \begin{frame}[fragile]
 \frametitle{Initializing a Repository the Hard Way}
-\lstinputlisting{code/1/1}
+\inputminted{bash}{code/1/1}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Initialization Results}
-\lstinputlisting{code/1/2}
+\inputminted{bash}{code/1/2}
 \end{frame}
 
 \subsection{Blobs}
@@ -187,12 +174,12 @@ What does Git store?
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-hash-object}}
-\lstinputlisting{code/1/3}
+\inputminted{bash}{code/1/3}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-hash-object}}
-\lstinputlisting{code/1/4}
+\inputminted{bash}{code/1/4}
 \end{frame}
 
 \begin{frame}
@@ -210,12 +197,12 @@ What does Git store?
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-cat-file}}
-\lstinputlisting{code/1/5}
+\inputminted{bash}{code/1/5}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Raw Access to Git Objects}
-\lstinputlisting{code/1/6}
+\inputminted{bash}{code/1/6}
 \end{frame}
 
 \begin{frame}
@@ -239,7 +226,7 @@ What does Git store?
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-update-index} and \texttt{git-write-tree}}
-\lstinputlisting{code/2/1}
+\inputminted[]{bash}{code/2/1}
 \end{frame}
 
 \begin{frame}
@@ -255,7 +242,7 @@ What does Git store?
 
 \begin{frame}[fragile]
 \frametitle{Current Git Objects}
-\lstinputlisting{code/2/2}
+\inputminted{bash}{code/2/2}
 \end{frame}
 
 \begin{frame}
@@ -273,12 +260,12 @@ What does Git store?
 
 \begin{frame}[fragile]
 \frametitle{Adding \texttt{bar.txt}}
-\lstinputlisting{code/2/3}
+\inputminted{bash}{code/2/3}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Git Objects}
-\lstinputlisting{code/2/4}
+\inputminted{bash}{code/2/4}
 \end{frame}
 
 \begin{frame}
@@ -300,7 +287,7 @@ What does Git store?
 
 \begin{frame}[fragile]
 \frametitle{Modifying Files}
-\lstinputlisting{code/2/5}
+\inputminted{bash}{code/2/5}
 \end{frame}
 
 \begin{frame}
@@ -325,7 +312,7 @@ What does Git store?
 \begin{frame}[fragile]
 \frametitle{Modifying Files}
 \framesubtitle{Current Objects}
-\lstinputlisting{code/2/6}
+\inputminted{bash}{code/2/6}
 \end{frame}
 
 \begin{frame}
@@ -391,7 +378,7 @@ What does Git store?
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-commit-tree}}
-\lstinputlisting{code/3/1}
+\inputminted{bash}{code/3/1}
 \end{frame}
 
 \begin{frame}
@@ -408,7 +395,7 @@ What does Git store?
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-commit-tree}}
-\lstinputlisting{code/3/2}
+\inputminted{bash}{code/3/2}
 \end{frame}
 
 \begin{frame}
@@ -428,7 +415,7 @@ What does Git store?
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-commit-tree}}
-\lstinputlisting{code/3/3}
+\inputminted{bash}{code/3/3}
 \end{frame}
 
 \begin{frame}
@@ -448,7 +435,7 @@ What does Git store?
 
 \begin{frame}[fragile]
 \frametitle{Git± History}
-\lstinputlisting{code/3/4}
+\inputminted{bash}{code/3/4}
 \end{frame}
 
 \begin{frame}
@@ -588,20 +575,19 @@ What does Git store?
 \begin{frame}[fragile]
 \frametitle{Creating Packfiles}
 \framesubtitle{\texttt{git-pack-objects}}
-\lstinputlisting[%
-    basicstyle=\scriptsize{}\ttfamily{}]{code/packfiles/1}
+\inputminted[fontsize=\scriptsize{}]{bash}{code/packfiles/1}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Creating Packfiles}
 \framesubtitle{\texttt{git-pack-objects}}
-\lstinputlisting{code/packfiles/2}
+\inputminted{bash}{code/packfiles/2}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Creating Packfiles}
 \framesubtitle{\texttt{git-gc}}
-\lstinputlisting{code/packfiles/3}
+\inputminted{bash}{code/packfiles/3}
 \end{frame}
 
 \begin{frame}
@@ -638,7 +624,7 @@ What does Git store?
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-init}}
-\lstinputlisting[basicstyle=\scriptsize{}\ttfamily{}]{code/4/git-init}
+\inputminted[fontsize=\scriptsize{}]{bash}{code/4/git-init}
 \end{frame}
 
 \subsection{git-status}
@@ -667,7 +653,7 @@ Combines:
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-add}}
-\lstinputlisting{code/4/1}
+\inputminted{bash}{code/4/1}
 \end{frame}
 
 \subsection{git-commit}
@@ -685,7 +671,7 @@ Combines:
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-commit}}
-\lstinputlisting{code/4/2}
+\inputminted{bash}{code/4/2}
 \end{frame}
 
 \subsection{git-mv}
@@ -703,7 +689,7 @@ Combines:
 
 \begin{frame}
 \frametitle{\texttt{git-mv}}
-\lstinputlisting{code/4/3}
+\inputminted{bash}{code/4/3}
 \end{frame}
 
 \subsection{git-rm}
@@ -718,7 +704,7 @@ Combines:
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-rm}}
-\lstinputlisting{code/4/4}
+\inputminted{bash}{code/4/4}
 \end{frame}
 
 \begin{frame}
@@ -740,42 +726,42 @@ Combines:
 
 \begin{frame}[fragile]
 \frametitle{Git± Branches}
-\lstinputlisting{code/5/1}
+\inputminted{bash}{code/5/1}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-branch}}
 Branches can be created with a simple invocation of \texttt{git-branch}:
-\lstinputlisting{code/5/2}
+\inputminted{bash}{code/5/2}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-checkout}}
 After the branch is created, we can switch into that branch with
 \texttt{git-checkout}:
-\lstinputlisting{code/5/3}
+\inputminted{bash}{code/5/3}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{\texttt{git-checkout -b}}
 Or, we can do all in the same command:
-\lstinputlisting{code/5/4}
+\inputminted{bash}{code/5/4}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Git± Branches}
 Currently, all branches are pointing to the same commit:
-\lstinputlisting{code/5/5}
+\inputminted{bash}{code/5/5}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Git± Branches}
-\lstinputlisting{code/5/6}
+\inputminted{bash}{code/5/6}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Git± Branches}
-\lstinputlisting{code/5/7}
+\inputminted{bash}{code/5/7}
 \end{frame}
 
 \subsection{Merging}
@@ -884,7 +870,7 @@ Currently, all branches are pointing to the same commit:
 \item{Otherwise, can be created with \texttt{git-remote}}
 \end{itemize}
 Example Usage:
-\lstinputlisting{code/5/8}
+\inputminted{bash}{code/5/8}
 \end{frame}
 
 \begin{frame}
@@ -1075,7 +1061,7 @@ Or, more realistically, a great way to have a bad time\ldots{}
 \frametitle{Writing Good Commit Messages}
 \framesubtitle{Why?}
 Because \texttt{git-log} output \textit{needs} to be beautiful:
-\lstinputlisting{code/gitlog}
+\inputminted{vctreestatus}{code/gitlog}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -1139,7 +1125,7 @@ Signed-off-by: Junio C Hamano <gitster@pobox.com>
 \item{I personally prefer using \texttt{git-fetch} and \texttt{git-merge}}
 \item{Another option: use \texttt{--ff-only} when pulling}
 \end{itemize}
-\lstinputlisting[title=\texttt{\~{}/.gitconfig}]{code/5/9}
+\inputminted[label=\texttt{\~{}/.gitconfig}]{linuxconfig}{code/5/9}
 \end{frame}
 
 \subsection{Moving Forward}
