@@ -1,6 +1,6 @@
-± git checkout -b my_other_branch master
+± git checkout -b my_other_branch trunk
 Switched to a new branch 'my_other_branch'
 ± find .git/refs -type f
 .git/refs/heads/my_other_branch
 .git/refs/heads/my_new_branch
-.git/refs/heads/master
+.git/refs/heads/trunk

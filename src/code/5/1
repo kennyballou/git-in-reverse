@@ -1,4 +1,4 @@
 ± find .git/refs -type f
-.git/refs/heads/master
-± cat .git/refs/heads/master
+.git/refs/heads/trunk
+± cat .git/refs/heads/trunk
 8cbc33461c800c20acea3b055886f8bed21c2092

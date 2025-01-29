@@ -1,2 +1,3 @@
-± cat .git/objects/25/7cc5642cb1a054f08cc83f2d943e56fd3ebe99 | zlib-flate -uncompress
+± cat .git/objects/25/7cc5642cb1a054f08cc83f2d943e56fd3ebe99 \
+  | zlib-flate -uncompress
 blob 4foo

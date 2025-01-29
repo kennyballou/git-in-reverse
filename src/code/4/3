@@ -1,5 +1,5 @@
 ± git mv foo bar.txt
-On branch master
+On branch trunk
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
 

@@ -2,7 +2,7 @@
 % mkdir -p foo/.git/objects/{info,pack}
 % mkdir -p foo/.git/hooks
 % mkdir -p foo/.git/refs/{tags,heads}
-% echo "ref: refs/heads/master" > foo/.git/HEAD
+% echo "ref: refs/heads/trunk" > foo/.git/HEAD
 % cat << EOF > foo/.git/config
 >[core]
 >	repositoryformatversion = 0

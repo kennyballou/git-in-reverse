@@ -2,7 +2,7 @@
 ± echo bar > bar.txt
 ± git add bar.txt
 ± git status
-On branch master
+On branch trunk
 
 Initial commit
 

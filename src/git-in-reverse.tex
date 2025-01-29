@@ -87,7 +87,7 @@ hell'' [e83c51633]}
   \item<3->{Used Git± before}
   \item<4->{Use Git± daily}
   \item<5->{Have attended this talk before}
-  \item<6->{Consider yourself a Git± master}
+  \item<5->{Consider yourself a Git± expert}
   \end{itemize}
 \end{frame}
 
@@ -783,13 +783,13 @@ Currently, all branches are pointing to the same commit:
 \node (C1) at (0, 3) {C1};
 \node (C2) at (0, 1.5) {C2};
 \node (C3) at (1, 0) {C3};
-\node[text=modusoperandiCyan] (master) at (-3, 1.5) {master};
+\node[text=modusoperandiCyan] (trunk) at (-3, 1.5) {trunk};
 \node[text=modusoperandiCyan] (develop) at (3, 0) {develop};
 
 \draw[-o,thick] (C0) -- (C1);
 \draw[-o,thick] (C1) -- (C2);
 \draw[-o,thick] (C2) to[out=-90,in=90] (C3);
-\draw[-o,thick] (master) -- (C2);
+\draw[-o,thick] (trunk) -- (C2);
 \draw[-o,thick] (develop) -- (C3);
 
 \end{tikzpicture}
@@ -805,13 +805,13 @@ Currently, all branches are pointing to the same commit:
 \node (C1) at (0, 3) {C1};
 \node (C2) at (0, 1.5) {C2};
 \node (C3) at (0, 0) {C3};
-\node[text=modusoperandiCyan] (master) at (-3, 0) {master};
+\node[text=modusoperandiCyan] (trunk) at (-3, 0) {trunk};
 \node[text=modusoperandiCyan] (develop) at (3, 0) {develop};
 
 \draw[-o,thick] (C0) -- (C1);
 \draw[-o,thick] (C1) -- (C2);
 \draw[-o,thick] (C2) -- (C3);
-\draw[-o,thick] (master) -- (C3);
+\draw[-o,thick] (trunk) -- (C3);
 \draw[-o,thick] (develop) -- (C3);
 
 \end{tikzpicture}
