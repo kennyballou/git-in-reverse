@@ -2,6 +2,12 @@
 \usetheme{AnnArbor}
 \usecolortheme[accent=blue]{modusoperandi}
 \usepackage{fontspec}
+\usepackage[%
+  citestyle=numeric,
+  sorting=nyt,
+  backend=biber,
+  maxbibnames=10,
+  maxcitenames=1]{biblatex}
 \usepackage{xunicode}
 \usepackage{xltxtra}
 \setmainfont{DejaVuSans}
@@ -23,7 +29,7 @@
   fontsize=\footnotesize{}
 }
 
-
+\addbibresource{references.bib}
 \title{Learning Git± in Reverse}
 \subtitle{A Backwards Introduction to \\{} the ``information manager from
 hell'' [e83c51633]}
@@ -1147,8 +1153,7 @@ Signed-off-by: Junio C Hamano <gitster@pobox.com>
 \frametitle{References}
 \nocite{*}
 \renewcommand{\refname}{}
-\bibliographystyle{plain}
-\bibliography{references}
+\printbibliography{}
 \end{frame}
 
 \againframe{titleslide}
