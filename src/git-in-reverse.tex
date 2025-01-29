@@ -1,6 +1,7 @@
 \documentclass[]{beamer}
 \usetheme{AnnArbor}
 \usecolortheme[accent=blue]{modusoperandi}
+% \setbeameroption{show notes on second screen=right}
 \usepackage{fontspec}
 \usepackage[%
   citestyle=numeric,
@@ -34,7 +35,8 @@
 \subtitle{A Backwards Introduction to \\{} the ``information manager from
 hell'' [e83c51633]}
 \author[Ballou]{Kenny Ballou}
-\institute[/dev/null]{/dev/null > labs}
+\institute[CSUSM]{California State University San Marcos}
+\date{Spring 2025}
 
 \AtBeginSection[]{%
     \begin{frame}
@@ -72,27 +74,11 @@ hell'' [e83c51633]}
 \end{frame}
 
 \begin{frame}
-\frametitle{About Me}
-\begin{itemize}
-\item{Hacker}
-\item{Developer (read gardener)}
-\item{Mathematician}
-\item{Student}
-\item{\href{https://twitter.com/kennyballou}{@kennyballou}}
-\item{\href{https://github.com}{github/kennyballou}}
-\item{\url{https://git.devnulllabs.io}}
-\item{\url{https://kennyballou.com}}
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}
   \frametitle{About You}
   \begin{itemize}
   \item<2->{Heard of Git± before}
   \item<3->{Used Git± before}
   \item<4->{Use Git± daily}
-  \item<5->{Have attended this talk before}
   \item<5->{Consider yourself a Git± expert}
   \end{itemize}
 \end{frame}
@@ -100,6 +86,12 @@ hell'' [e83c51633]}
 \section{Introduction}
 
 \begin{frame}
+  \note{%
+   If that doesn't fix it, git.txt contains the phone number of a friend of
+mine who understands git.  Just wait through a few minutes of ``It's really
+pretty simple, just think of branches as...'' and eventually you'll learn the
+commands that will fix everything.
+}
 \begin{figure}
 \includegraphics[scale=0.45]{xkcd_git.png}
 \caption{XKCD on Git\cite{website:xkcd_git_comic}}
@@ -109,7 +101,7 @@ hell'' [e83c51633]}
 \subsection{Information Manager from Hell}
 \begin{frame}
 \frametitle{Git±}
-\framesubtitle{What is Git?}
+\framesubtitle{What is Git±?}
 \begin{itemize}
 \item<2->{Distributed Version Control System (D-VCS)}
 \item<3->{``A way to manage code''}
@@ -127,9 +119,9 @@ hell'' [e83c51633]}
 
 \begin{frame}
 \frametitle{Git±}
-What does Git store?
+What does Git± store?
 \begin{itemize}
-\item<2-6>{Objects}
+\item<2-5>{Objects}
 \item<3-5>{Commits}
 \item<4-5>{Code}
 \item<5-5>{``Packs''}
@@ -143,6 +135,7 @@ What does Git store?
 \item{Objects}
 \item{Trees}
 \item{Commits}
+\item{References}
 \end{itemize}
 \end{frame}
 
@@ -151,8 +144,8 @@ What does Git store?
 \framesubtitle{``It's turtles all the down''}
 \begin{itemize}
 \item{Objects}
-\item{Trees ← object}
-\item{Commits ← object}
+\item{Trees \(\gets\) objects}
+\item{Commits \(\gets\) objects}
 \end{itemize}
 \end{frame}
 
@@ -254,11 +247,11 @@ What does Git store?
 \begin{frame}
 \frametitle{Current Git Objects}
 \begin{figure}
-\begin{tikzpicture}[sibling distance=3cm]
+  \begin{tikzpicture}[sibling distance=3cm]
     \node[text=modusoperandiMagenta] at (0, 0) {fcf0be4d7}
         child{node[text=modusoperandiBlue] {257cc5642}
-            child{node[text=modusoperandiGreen]{foo}}};
-    \node[text=modusoperandiBlue] at (3, -1) {5716ca598}
+          child{node[text=modusoperandiGreen]{foo}}};
+    \node[text=modusoperandiBlue] at (3, -1.75) {5716ca598}
         child{node[text=modusoperandiGreen]{bar}};
 \end{tikzpicture}
 \end{figure}
@@ -1043,6 +1036,11 @@ Or, more realistically, a great way to have a bad time\ldots{}
 
 \subsection{Commit Messages}
 \begin{frame}
+  \note{%
+    \begin{itemize}
+      \item{Merge branch 'asdfasjkfdlas/alkdjf' into sdkjfls-final}
+    \end{itemize}
+  }
 \frametitle{Writing Good Commit Messages}
 \begin{figure}
 \includegraphics[scale=0.45]{xkcd_git_commit.png}
@@ -1141,7 +1139,7 @@ Signed-off-by: Junio C Hamano <gitster@pobox.com>
 \item<2->{Read the output}
 \item<3->{No, \textit{really}, Read the output!}
 \item<4->{\url{git-scm.com} and ``Pro Git''}
-\item<5->{\texttt{\#{}git} on Freenode}
+\item<5->{\texttt{\#{}git} on \href{https://libre.chat}{Libre.Chat}}
 \item<6->{Git± man pages~\cite{website:git_man_pages}
 ~\cite{website:understand_git_man_pages}}
 \item<7->{Git± workflows~\cite{website:gitworkflows7}}
